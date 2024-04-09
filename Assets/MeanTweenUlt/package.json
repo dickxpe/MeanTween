@@ -1,0 +1,18 @@
+{
+    "name": "be.peterdickx.meantween",
+    "author": "Peter Dickx",
+    "displayName": "MeanTween",
+    "version": "0.0.1-preview.1",
+    "unity": "2022.3",
+    "description": "A framework for deforming meshes in the editor and at runtime.",
+    "category": "Unity",
+    "keywords":
+    [
+        "tween"
+    ],
+    "dependencies":
+    {
+        "com.unity.burst": "0.2.4-preview.45",
+        "com.unity.mathematics": "0.0.12-preview.20"
+    }
+}
