@@ -142,7 +142,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!135 &238134959
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -223,7 +223,7 @@ Transform:
   m_GameObject: {fileID: 238134957}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.4167705, y: 1.7091285, z: 2.9937954}
+  m_LocalPosition: {x: -2.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -243,17 +243,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tweenName: Tween 1
   objectToTween: {fileID: 238134957}
-  selectedComponent: 0
-  selectedField: 0
-  tweenType: 0
+  selectedComponentId: 0
+  selectedFieldId: 0
+  selectedComponent: {fileID: 0}
+  selectedFieldName: 
+  from: {x: 0, y: 0, z: 0}
+  fromCheck: 0
+  tweenType: 2
   spline: 0
   rotateAroundAxis: 0
   axis: 0
   degrees: 360
   space: 0
   easeType: 7
-  additive: 1
-  target: {x: 0, y: 5, z: 0}
+  additive: 0
+  target: {x: 2, y: 2, z: 2}
   color: {r: 0, g: 0, b: 0, a: 0}
   alpha: 0
   value: 0
@@ -262,7 +266,7 @@ MonoBehaviour:
   splinePositions: []
   duration: 2
   totalDuration: 2
-  playOnAwake: 0
+  playOnAwake: 1
   ignoreTimeScale: 0
   onStart:
     m_PersistentCalls:
@@ -271,16 +275,214 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   infiniteLoop: 1
-  loops: 2
+  loops: -1
   onComplete:
     m_PersistentCalls:
       m_Calls: []
   onLoopsComplete:
     m_PersistentCalls:
       m_Calls: []
-  loopType: 0
-  tweenId: 0
+  loopType: 1
+  tweenId: 589832
   showEvents: 0
+--- !u!1 &328364982
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 328364984}
+  - component: {fileID: 328364983}
+  - component: {fileID: 328364985}
+  - component: {fileID: 328364986}
+  m_Layer: 0
+  m_Name: Sprite
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!212 &328364983
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328364982}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: c4c548a339b4d41a590928c0c98934a7, type: 3}
+  m_Color: {r: 1, g: 0.9048885, b: 0, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.16, y: 0.16}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &328364984
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328364982}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5, y: 0.026010172, z: -0.021256628}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &328364985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328364982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d5ec3cb41ed1c8449ec3e2634c39d59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tweenName: Tween 1
+  objectToTween: {fileID: 328364982}
+  selectedComponentId: 0
+  selectedFieldId: 0
+  selectedComponent: {fileID: 0}
+  selectedFieldName: 
+  from: {x: 0, y: 0, z: 0}
+  fromCheck: 0
+  tweenType: 4
+  spline: 0
+  rotateAroundAxis: 0
+  axis: 0
+  degrees: 360
+  space: 0
+  easeType: 16
+  additive: 0
+  target: {x: 0, y: 0, z: 0}
+  color: {r: 1, g: 0, b: 0, a: 1}
+  alpha: 0
+  value: 0
+  vector2Value: {x: 0, y: 0}
+  component: {fileID: 0}
+  splinePositions: []
+  duration: 2
+  totalDuration: 2
+  playOnAwake: 1
+  ignoreTimeScale: 0
+  onStart:
+    m_PersistentCalls:
+      m_Calls: []
+  onUpdate:
+    m_PersistentCalls:
+      m_Calls: []
+  infiniteLoop: 1
+  loops: -1
+  onComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onLoopsComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  loopType: 2
+  tweenId: 655369
+  showEvents: 1
+--- !u!114 &328364986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328364982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d5ec3cb41ed1c8449ec3e2634c39d59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tweenName: Tween 2
+  objectToTween: {fileID: 328364982}
+  selectedComponentId: 0
+  selectedFieldId: 0
+  selectedComponent: {fileID: 0}
+  selectedFieldName: 
+  from: {x: 0, y: 0, z: 0}
+  fromCheck: 0
+  tweenType: 1
+  spline: 0
+  rotateAroundAxis: 1
+  axis: 2
+  degrees: 360
+  space: 0
+  easeType: 1
+  additive: 0
+  target: {x: 0, y: 0, z: 0}
+  color: {r: 0, g: 0, b: 0, a: 0}
+  alpha: 0
+  value: 0
+  vector2Value: {x: 0, y: 0}
+  component: {fileID: 0}
+  splinePositions: []
+  duration: 2
+  totalDuration: 2
+  playOnAwake: 1
+  ignoreTimeScale: 0
+  onStart:
+    m_PersistentCalls:
+      m_Calls: []
+  onUpdate:
+    m_PersistentCalls:
+      m_Calls: []
+  infiniteLoop: 1
+  loops: -1
+  onComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onLoopsComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  loopType: 1
+  tweenId: 720906
+  showEvents: 1
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,6 +738,310 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 1
+--- !u!1 &484053783
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 484053787}
+  - component: {fileID: 484053786}
+  - component: {fileID: 484053785}
+  - component: {fileID: 484053784}
+  - component: {fileID: 484053788}
+  m_Layer: 0
+  m_Name: Capsule
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!136 &484053784
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 484053783}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &484053785
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 484053783}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &484053786
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 484053783}
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &484053787
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 484053783}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &484053788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 484053783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d5ec3cb41ed1c8449ec3e2634c39d59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tweenName: Tween 1
+  objectToTween: {fileID: 484053783}
+  selectedComponentId: 0
+  selectedFieldId: 0
+  selectedComponent: {fileID: 0}
+  selectedFieldName: 
+  from: {x: 0, y: 0, z: 0}
+  fromCheck: 0
+  tweenType: 1
+  spline: 0
+  rotateAroundAxis: 1
+  axis: 2
+  degrees: 360
+  space: 0
+  easeType: 7
+  additive: 0
+  target: {x: 0, y: 0, z: 0}
+  color: {r: 0, g: 0, b: 0, a: 0}
+  alpha: 0
+  value: 0
+  vector2Value: {x: 0, y: 0}
+  component: {fileID: 0}
+  splinePositions: []
+  duration: 2
+  totalDuration: 2
+  playOnAwake: 1
+  ignoreTimeScale: 0
+  onStart:
+    m_PersistentCalls:
+      m_Calls: []
+  onUpdate:
+    m_PersistentCalls:
+      m_Calls: []
+  infiniteLoop: 1
+  loops: -1
+  onComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onLoopsComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  loopType: 2
+  tweenId: 786443
+  showEvents: 0
+--- !u!1 &608340646
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 608340650}
+  - component: {fileID: 608340649}
+  - component: {fileID: 608340648}
+  - component: {fileID: 608340651}
+  m_Layer: 0
+  m_Name: Cylinder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!23 &608340648
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 608340646}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &608340649
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 608340646}
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &608340650
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 608340646}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.5, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &608340651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 608340646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d5ec3cb41ed1c8449ec3e2634c39d59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tweenName: Tween 1
+  objectToTween: {fileID: 608340646}
+  selectedComponentId: 0
+  selectedFieldId: 0
+  selectedComponent: {fileID: 0}
+  selectedFieldName: position
+  from: {x: 2.5, y: 0, z: 0}
+  fromCheck: 1
+  tweenType: 5
+  spline: 0
+  rotateAroundAxis: 0
+  axis: 0
+  degrees: 360
+  space: 0
+  easeType: 7
+  additive: 0
+  target: {x: 2.5, y: 3, z: 0}
+  color: {r: 0, g: 0, b: 0, a: 0}
+  alpha: 0
+  value: 0
+  vector2Value: {x: 0, y: 0}
+  component: {fileID: 608340650}
+  splinePositions: []
+  duration: 2
+  totalDuration: 2
+  playOnAwake: 1
+  ignoreTimeScale: 0
+  onStart:
+    m_PersistentCalls:
+      m_Calls: []
+  onUpdate:
+    m_PersistentCalls:
+      m_Calls: []
+  infiniteLoop: 1
+  loops: -1
+  onComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onLoopsComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  loopType: 2
+  tweenId: 851980
+  showEvents: 0
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -585,408 +1091,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &913206667
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 913206669}
-  - component: {fileID: 913206668}
-  m_Layer: 0
-  m_Name: Seq
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &913206668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 913206667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c457713590901eb49a6953ab11b543b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playOnAwake: 0
-  sequence:
-  - targetGameObject: {fileID: 950279914}
-    playSimultaneously: 0
-    tweens:
-    - {fileID: 950279915}
-    - {fileID: 950279921}
-  onPlayNext:
-    _PersistentCalls: []
-  onCompleted:
-    _PersistentCalls:
-    - _Target: {fileID: 950279920}
-      _MemberName: Log
-      _PersistentArguments:
-      - _Type: 2
-        _Int: 0
-        _String: seq complete
-        _X: 0
-        _Y: 0
-        _Z: 0
-        _W: 0
-        _Object: {fileID: 0}
-  showEvents: 1
---- !u!4 &913206669
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 913206667}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.201504, y: -4.2766685, z: -13.948902}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &950279914
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 950279919}
-  - component: {fileID: 950279918}
-  - component: {fileID: 950279917}
-  - component: {fileID: 950279916}
-  - component: {fileID: 950279915}
-  - component: {fileID: 950279920}
-  - component: {fileID: 950279921}
-  m_Layer: 0
-  m_Name: Cube (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &950279915
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 950279914}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b426f356a983d8348b64a3b48225015c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tweenName: Tween 1
-  objectToTween: {fileID: 950279914}
-  selectedComponent: 0
-  selectedField: 0
-  tweenType: 0
-  spline: 0
-  rotateAroundAxis: 0
-  axis: 0
-  degrees: 360
-  space: 0
-  easeType: 7
-  additive: 0
-  target: {x: 10, y: 0, z: 0}
-  color: {r: 0, g: 0, b: 0, a: 0}
-  alpha: 0
-  value: 0
-  vector2Value: {x: 0, y: 0}
-  component: {fileID: 0}
-  splinePositions: []
-  duration: 2
-  totalDuration: 2
-  playOnAwake: 0
-  ignoreTimeScale: 0
-  onStart:
-    _PersistentCalls: []
-  onUpdate:
-    _PersistentCalls: []
-  infiniteLoop: 1
-  loops: 2
-  onComplete:
-    _PersistentCalls:
-    - _Target: {fileID: 950279920}
-      _MemberName: Log
-      _PersistentArguments:
-      - _Type: 2
-        _Int: 0
-        _String: Cube complete
-        _X: 0
-        _Y: 0
-        _Z: 0
-        _W: 0
-        _Object: {fileID: 0}
-  onLoopsComplete:
-    _PersistentCalls: []
-  loopType: 0
-  tweenId: 0
-  showEvents: 1
---- !u!65 &950279916
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 950279914}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &950279917
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 950279914}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &950279918
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 950279914}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &950279919
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 950279914}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.201504, y: -4.2766685, z: -13.948902}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &950279920
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 950279914}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fd5a2540f343c74db75506f2e964dbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &950279921
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 950279914}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b426f356a983d8348b64a3b48225015c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tweenName: Tween 2
-  objectToTween: {fileID: 950279914}
-  selectedComponent: 0
-  selectedField: 0
-  tweenType: 0
-  spline: 0
-  rotateAroundAxis: 0
-  axis: 0
-  degrees: 360
-  space: 0
-  easeType: 7
-  additive: 0
-  target: {x: 0, y: 10, z: 0}
-  color: {r: 0, g: 0, b: 0, a: 0}
-  alpha: 0
-  value: 0
-  vector2Value: {x: 0, y: 0}
-  component: {fileID: 0}
-  splinePositions: []
-  duration: 2
-  totalDuration: 2
-  playOnAwake: 0
-  ignoreTimeScale: 0
-  onStart:
-    _PersistentCalls: []
-  onUpdate:
-    _PersistentCalls: []
-  infiniteLoop: 1
-  loops: 2
-  onComplete:
-    _PersistentCalls: []
-  onLoopsComplete:
-    _PersistentCalls: []
-  loopType: 0
-  tweenId: 0
-  showEvents: 1
---- !u!1 &960467519
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 960467520}
-  - component: {fileID: 960467521}
-  - component: {fileID: 960467522}
-  - component: {fileID: 960467524}
-  - component: {fileID: 960467523}
-  m_Layer: 0
-  m_Name: Sequence
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &960467520
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 960467519}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &960467521
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 960467519}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 341915cb2f21bb54383521b7e0c995af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playOnAwake: 0
-  sequence: []
-  onPlayNext:
-    m_PersistentCalls:
-      m_Calls: []
-  onCompleted:
-    m_PersistentCalls:
-      m_Calls: []
-  showEvents: 1
---- !u!114 &960467522
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 960467519}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fd5a2540f343c74db75506f2e964dbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &960467523
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 960467519}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 341915cb2f21bb54383521b7e0c995af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playOnAwake: 0
-  sequence: []
-  onPlayNext:
-    m_PersistentCalls:
-      m_Calls: []
-  onCompleted:
-    m_PersistentCalls:
-      m_Calls: []
-  showEvents: 0
---- !u!114 &960467524
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 960467519}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c457713590901eb49a6953ab11b543b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playOnAwake: 0
-  sequence: []
-  onPlayNext:
-    _PersistentCalls: []
-  onCompleted:
-    _PersistentCalls: []
-  showEvents: 1
 --- !u!1 &1070701879
 GameObject:
   m_ObjectHideFlags: 0
@@ -999,71 +1103,14 @@ GameObject:
   - component: {fileID: 1070701883}
   - component: {fileID: 1070701882}
   - component: {fileID: 1070701881}
-  - component: {fileID: 1070701880}
-  - component: {fileID: 1070701888}
-  - component: {fileID: 1070701887}
-  - component: {fileID: 1070701886}
   - component: {fileID: 1070701885}
-  - component: {fileID: 1070701889}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1070701880
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1070701879}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d5ec3cb41ed1c8449ec3e2634c39d59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tweenName: Tween 1
-  objectToTween: {fileID: 1070701879}
-  selectedComponent: 0
-  selectedField: 0
-  tweenType: 0
-  spline: 0
-  rotateAroundAxis: 0
-  axis: 0
-  degrees: 360
-  space: 0
-  easeType: 7
-  additive: 1
-  target: {x: 5, y: 0, z: 0}
-  color: {r: 0, g: 0, b: 0, a: 0}
-  alpha: 0
-  value: 0
-  vector2Value: {x: 0, y: 0}
-  component: {fileID: 0}
-  splinePositions: []
-  duration: 2
-  totalDuration: 2
-  playOnAwake: 0
-  ignoreTimeScale: 0
-  onStart:
-    m_PersistentCalls:
-      m_Calls: []
-  onUpdate:
-    m_PersistentCalls:
-      m_Calls: []
-  infiniteLoop: 1
-  loops: 2
-  onComplete:
-    m_PersistentCalls:
-      m_Calls: []
-  onLoopsComplete:
-    m_PersistentCalls:
-      m_Calls: []
-  loopType: 0
-  tweenId: 0
-  showEvents: 0
+  m_IsActive: 0
 --- !u!65 &1070701881
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1144,7 +1191,7 @@ Transform:
   m_GameObject: {fileID: 1070701879}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1162,11 +1209,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d5ec3cb41ed1c8449ec3e2634c39d59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tweenName: Tween 5
+  tweenName: Tween 1
   objectToTween: {fileID: 1070701879}
-  selectedComponent: 0
-  selectedField: 0
-  tweenType: 4
+  selectedComponentId: 0
+  selectedFieldId: 0
+  selectedComponent: {fileID: 0}
+  selectedFieldName: 
+  from: {x: 0, y: 0, z: 0}
+  fromCheck: 0
+  tweenType: 0
   spline: 0
   rotateAroundAxis: 0
   axis: 0
@@ -1174,7 +1225,7 @@ MonoBehaviour:
   space: 0
   easeType: 7
   additive: 1
-  target: {x: 0, y: -5, z: 0}
+  target: {x: 0, y: 2, z: 0}
   color: {r: 0, g: 0, b: 0, a: 0}
   alpha: 0
   value: 0
@@ -1183,59 +1234,7 @@ MonoBehaviour:
   splinePositions: []
   duration: 2
   totalDuration: 2
-  playOnAwake: 0
-  ignoreTimeScale: 0
-  onStart:
-    m_PersistentCalls:
-      m_Calls: []
-  onUpdate:
-    m_PersistentCalls:
-      m_Calls: []
-  infiniteLoop: 0
-  loops: 5
-  onComplete:
-    m_PersistentCalls:
-      m_Calls: []
-  onLoopsComplete:
-    m_PersistentCalls:
-      m_Calls: []
-  loopType: 1
-  tweenId: 0
-  showEvents: 0
---- !u!114 &1070701886
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1070701879}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d5ec3cb41ed1c8449ec3e2634c39d59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tweenName: Tween 4
-  objectToTween: {fileID: 1070701879}
-  selectedComponent: 0
-  selectedField: 0
-  tweenType: 3
-  spline: 0
-  rotateAroundAxis: 0
-  axis: 0
-  degrees: 360
-  space: 0
-  easeType: 7
-  additive: 1
-  target: {x: -5, y: 0, z: 0}
-  color: {r: 0, g: 0, b: 0, a: 0}
-  alpha: 0
-  value: 0
-  vector2Value: {x: 0, y: 0}
-  component: {fileID: 0}
-  splinePositions: []
-  duration: 2
-  totalDuration: 2
-  playOnAwake: 0
+  playOnAwake: 1
   ignoreTimeScale: 0
   onStart:
     m_PersistentCalls:
@@ -1244,59 +1243,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   infiniteLoop: 1
-  loops: 2
-  onComplete:
-    m_PersistentCalls:
-      m_Calls: []
-  onLoopsComplete:
-    m_PersistentCalls:
-      m_Calls: []
-  loopType: 1
-  tweenId: 0
-  showEvents: 0
---- !u!114 &1070701887
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1070701879}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d5ec3cb41ed1c8449ec3e2634c39d59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tweenName: Tween 3
-  objectToTween: {fileID: 1070701879}
-  selectedComponent: 0
-  selectedField: 0
-  tweenType: 2
-  spline: 0
-  rotateAroundAxis: 0
-  axis: 0
-  degrees: 360
-  space: 0
-  easeType: 7
-  additive: 1
-  target: {x: 0, y: 0, z: 5}
-  color: {r: 0, g: 0, b: 0, a: 0}
-  alpha: 0
-  value: 0
-  vector2Value: {x: 0, y: 0}
-  component: {fileID: 0}
-  splinePositions: []
-  duration: 2
-  totalDuration: 2
-  playOnAwake: 0
-  ignoreTimeScale: 0
-  onStart:
-    m_PersistentCalls:
-      m_Calls: []
-  onUpdate:
-    m_PersistentCalls:
-      m_Calls: []
-  infiniteLoop: 0
-  loops: 3
+  loops: -1
   onComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -1304,33 +1251,56 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   loopType: 2
-  tweenId: 0
+  tweenId: 917517
   showEvents: 0
---- !u!114 &1070701888
+--- !u!1 &1617522877
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1617522881}
+  - component: {fileID: 1617522880}
+  - component: {fileID: 1617522879}
+  - component: {fileID: 1617522878}
+  m_Layer: 0
+  m_Name: Sprite (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1617522878
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1070701879}
+  m_GameObject: {fileID: 1617522877}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4d5ec3cb41ed1c8449ec3e2634c39d59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tweenName: Tween 2
-  objectToTween: {fileID: 1070701879}
-  selectedComponent: 0
-  selectedField: 0
+  objectToTween: {fileID: 1617522877}
+  selectedComponentId: 0
+  selectedFieldId: 0
+  selectedComponent: {fileID: 0}
+  selectedFieldName: 
+  from: {x: 0, y: 0, z: 0}
+  fromCheck: 0
   tweenType: 1
   spline: 0
   rotateAroundAxis: 1
-  axis: 1
-  degrees: 360
+  axis: 2
+  degrees: -360
   space: 0
-  easeType: 7
-  additive: 1
-  target: {x: 0, y: 18, z: 0}
+  easeType: 1
+  additive: 0
+  target: {x: 0, y: 0, z: 0}
   color: {r: 0, g: 0, b: 0, a: 0}
   alpha: 0
   value: 0
@@ -1339,7 +1309,7 @@ MonoBehaviour:
   splinePositions: []
   duration: 2
   totalDuration: 2
-  playOnAwake: 0
+  playOnAwake: 1
   ignoreTimeScale: 0
   onStart:
     m_PersistentCalls:
@@ -1348,50 +1318,54 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   infiniteLoop: 1
-  loops: 2
+  loops: -1
   onComplete:
     m_PersistentCalls:
       m_Calls: []
   onLoopsComplete:
     m_PersistentCalls:
       m_Calls: []
-  loopType: 0
-  tweenId: 0
-  showEvents: 0
---- !u!114 &1070701889
+  loopType: 1
+  tweenId: 983054
+  showEvents: 1
+--- !u!114 &1617522879
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1070701879}
+  m_GameObject: {fileID: 1617522877}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4d5ec3cb41ed1c8449ec3e2634c39d59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tweenName: Tween 6
-  objectToTween: {fileID: 1070701879}
-  selectedComponent: 0
-  selectedField: 0
-  tweenType: 5
+  tweenName: Tween 1
+  objectToTween: {fileID: 1617522877}
+  selectedComponentId: 0
+  selectedFieldId: 0
+  selectedComponent: {fileID: 0}
+  selectedFieldName: 
+  from: {x: 0, y: 0, z: 0}
+  fromCheck: 0
+  tweenType: 3
   spline: 0
   rotateAroundAxis: 0
   axis: 0
   degrees: 360
   space: 0
-  easeType: 7
+  easeType: 16
   additive: 0
   target: {x: 0, y: 0, z: 0}
-  color: {r: 0, g: 0, b: 0, a: 0}
+  color: {r: 1, g: 0, b: 0, a: 1}
   alpha: 0
   value: 0
   vector2Value: {x: 0, y: 0}
-  component: {fileID: 1070701884}
+  component: {fileID: 0}
   splinePositions: []
   duration: 2
   totalDuration: 2
-  playOnAwake: 0
+  playOnAwake: 1
   ignoreTimeScale: 0
   onStart:
     m_PersistentCalls:
@@ -1400,16 +1374,83 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   infiniteLoop: 1
-  loops: 2
+  loops: -1
   onComplete:
     m_PersistentCalls:
       m_Calls: []
   onLoopsComplete:
     m_PersistentCalls:
       m_Calls: []
-  loopType: 0
-  tweenId: 0
-  showEvents: 0
+  loopType: 2
+  tweenId: 1048591
+  showEvents: 1
+--- !u!212 &1617522880
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617522877}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: c4c548a339b4d41a590928c0c98934a7, type: 3}
+  m_Color: {r: 0, g: 0.15586233, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.16, y: 0.16}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &1617522881
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617522877}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.5, y: 0.026010172, z: -0.021256628}
+  m_LocalScale: {x: -0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1418,7 +1459,8 @@ SceneRoots:
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 1070701884}
-  - {fileID: 960467520}
   - {fileID: 238134962}
-  - {fileID: 950279919}
-  - {fileID: 913206669}
+  - {fileID: 484053787}
+  - {fileID: 608340650}
+  - {fileID: 328364984}
+  - {fileID: 1617522881}

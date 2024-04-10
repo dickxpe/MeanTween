@@ -15,8 +15,6 @@ namespace com.zebugames.meantween.unity
         public override void Awake()
         {
             base.Awake();
-
-
         }
 
         public override void Animate(bool once = false)

@@ -5,6 +5,7 @@ using System;
 using UnityEngine.Events;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Linq;
 
 namespace com.zebugames.meantween.unity
 {
@@ -32,19 +33,26 @@ namespace com.zebugames.meantween.unity
         }
         public enum TWEENTYPE { Move, Rotate, Scale, SpriteAlpha, SpriteColor, ComponentFieldValue };
         public enum AROUND { x, y, z };
-        public enum VALUETYPE { FloatValue, Vector3Value };
 
         [HideInInspector]
-        public int selectedComponent = 0;
+        public int selectedComponentId = 0;
 
         [HideInInspector]
-        public int selectedField = 0;
-        [HideInInspector]
-        public FieldInfo fieldInfo;
-        [HideInInspector]
-        public PropertyInfo propertyInfo;
+        public int selectedFieldId = 0;
 
+        [HideInInspector]
+        [SerializeField]
+        public Component selectedComponent;
 
+        [HideInInspector]
+        public string selectedFieldName;
+
+        FieldInfo fieldInfo;
+        PropertyInfo propertyInfo;
+
+        public Vector3 from;
+
+        public bool fromCheck = false;
 
         [SerializeField]
         public TWEENTYPE tweenType = TWEENTYPE.Move;
@@ -75,15 +83,6 @@ namespace com.zebugames.meantween.unity
 
         [SerializeField]
         public float alpha;
-
-        [SerializeField]
-        public float value;
-
-        [SerializeField]
-        public Vector2 vector2Value;
-
-        [SerializeField]
-        public Component component;
 
         [SerializeField]
         public List<Vector3> splinePositions = new List<Vector3>();
@@ -131,16 +130,22 @@ namespace com.zebugames.meantween.unity
 
         public bool showEvents = false;
 
+        string[] componentStrings;
+
         public virtual void Animate(bool once = false)
         {
-            tween = LeanTween.options();
-            tweenId = tween.id;
 
             if (pushNewTween == null)
             {
                 pushNewTween = typeof(LeanTween).GetMethod("pushNewTween", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static);
             }
             pushNewTween.Invoke(this, new object[] { objectToTween, target, duration, tween });
+
+            if (fromCheck)
+            {
+                //Get component by selectedcomponent, get field by selectedfield
+                tween.from = from;
+            }
 
             tween.setTo(target)
               .setTime(duration)
@@ -150,6 +155,8 @@ namespace com.zebugames.meantween.unity
               .setOnCompleteOnRepeat(true)
               .setOnComplete(() => { onComplete.Invoke(); })
               .setIgnoreTimeScale(ignoreTimeScale);
+
+
 
             if (infiniteLoop)
             {
@@ -173,8 +180,51 @@ namespace com.zebugames.meantween.unity
         }
 
 
+
         public virtual void Awake()
         {
+
+            propertyInfo = selectedComponent.GetType().GetProperty(selectedFieldName);
+            if (propertyInfo != null)
+            {
+                fromCheck = true;
+                if (propertyInfo.PropertyType == typeof(float))
+                {
+                    from = new Vector3((float)propertyInfo.GetValue(selectedComponent), 0, 0);
+                }
+                else if (propertyInfo.PropertyType == typeof(Vector3))
+                {
+                    from = (Vector3)propertyInfo.GetValue(selectedComponent);
+                }
+                else if (propertyInfo.PropertyType == typeof(Vector2))
+                {
+                    from = (Vector2)propertyInfo.GetValue(selectedComponent);
+                }
+            }
+            else
+            {
+                fieldInfo = selectedComponent.GetType().GetField(selectedFieldName);
+                if (fieldInfo != null)
+                {
+                    fromCheck = true;
+                    if (fieldInfo.FieldType == typeof(float))
+                    {
+                        from = new Vector3((float)fieldInfo.GetValue(selectedComponent), 0, 0);
+                    }
+                    else if (fieldInfo.FieldType == typeof(Vector3))
+                    {
+                        from = (Vector3)fieldInfo.GetValue(selectedComponent);
+                    }
+                    else if (fieldInfo.FieldType == typeof(Vector2))
+                    {
+                        from = (Vector2)fieldInfo.GetValue(selectedComponent);
+                    }
+                }
+            }
+
+            //  Selected Component => Selected Field => get
+            tween = LeanTween.options();
+            tweenId = tween.id;
             pushNewTween = typeof(LeanTween).GetMethod("pushNewTween", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static);
             onComplete.AddListener(Complete);
             totalDuration = duration;
@@ -183,6 +233,7 @@ namespace com.zebugames.meantween.unity
                 totalDuration = duration * loops;
             }
         }
+
 
         public void AnimateOnce()
         {
@@ -213,30 +264,30 @@ namespace com.zebugames.meantween.unity
                 {
                     if (fieldInfo.FieldType == typeof(float))
                     {
-                        fieldInfo.SetValue(component, vector.x);
+                        fieldInfo.SetValue(selectedComponent, vector.x);
                     }
                     else if (fieldInfo.FieldType == typeof(Vector3))
                     {
-                        fieldInfo.SetValue(component, vector);
+                        fieldInfo.SetValue(selectedComponent, vector);
                     }
                     else if (fieldInfo.FieldType == typeof(Vector2))
                     {
-                        fieldInfo.SetValue(component, new Vector2(vector.x, vector.y));
+                        fieldInfo.SetValue(selectedComponent, new Vector2(vector.x, vector.y));
                     }
                 }
                 else if (propertyInfo != null)
                 {
                     if (propertyInfo.PropertyType == typeof(float))
                     {
-                        propertyInfo.SetValue(component, vector.x);
+                        propertyInfo.SetValue(selectedComponent, vector.x);
                     }
                     else if (propertyInfo.PropertyType == typeof(Vector3))
                     {
-                        propertyInfo.SetValue(component, vector);
+                        propertyInfo.SetValue(selectedComponent, vector);
                     }
                     else if (propertyInfo.PropertyType == typeof(Vector2))
                     {
-                        propertyInfo.SetValue(component, new Vector2(vector.x, vector.y));
+                        propertyInfo.SetValue(selectedComponent, new Vector2(vector.x, vector.y));
                     }
                 }
             }
