@@ -2,15 +2,16 @@
 // MIT License - Copyright (c) 2024 Peter Dickx
 using UnityEngine;
 using System;
-using UnityEngine.Events;
 using System.Collections.Generic;
 using System.Reflection;
 using UltEvents;
+using UnityEngine.Rendering;
 
 namespace com.zebugames.meantween.ult
 {
     public abstract class MeanBehaviour : MonoBehaviour
     {
+
 
         public enum LOOPTYPE
         {
@@ -33,19 +34,26 @@ namespace com.zebugames.meantween.ult
         }
         public enum TWEENTYPE { Move, Rotate, Scale, SpriteAlpha, SpriteColor, ComponentFieldValue };
         public enum AROUND { x, y, z };
-        public enum VALUETYPE { FloatValue, Vector3Value };
 
         [HideInInspector]
-        public int selectedComponent = 0;
+        public int selectedComponentId = 0;
 
         [HideInInspector]
-        public int selectedField = 0;
-        [HideInInspector]
-        public FieldInfo fieldInfo;
-        [HideInInspector]
-        public PropertyInfo propertyInfo;
+        public int selectedFieldId = 0;
 
+        [HideInInspector]
+        [SerializeField]
+        public Component selectedComponent;
 
+        [HideInInspector]
+        public string selectedFieldName;
+
+        FieldInfo fieldInfo;
+        PropertyInfo propertyInfo;
+
+        public Vector3 from;
+
+        public bool fromCheck = false;
 
         [SerializeField]
         public TWEENTYPE tweenType = TWEENTYPE.Move;
@@ -72,19 +80,16 @@ namespace com.zebugames.meantween.ult
         public Vector3 target;
 
         [SerializeField]
-        public Color color;
-
-        [SerializeField]
-        public float alpha;
+        public Vector2 vector2Value;
 
         [SerializeField]
         public float value;
 
         [SerializeField]
-        public Vector2 vector2Value;
+        public Color color;
 
         [SerializeField]
-        public Component component;
+        public float alpha;
 
         [SerializeField]
         public List<Vector3> splinePositions = new List<Vector3>();
@@ -128,20 +133,23 @@ namespace com.zebugames.meantween.ult
 
         public int tweenId;
 
-        int loopsPlayed = 0;
+        public int loopsPlayed = 0;
 
         public bool showEvents = false;
+
+        string[] componentStrings;
 
         public virtual void Animate(bool once = false)
         {
             tween = LeanTween.options();
             tweenId = tween.id;
-
-            if (pushNewTween == null)
-            {
-                pushNewTween = typeof(LeanTween).GetMethod("pushNewTween", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static);
-            }
+            pushNewTween = typeof(LeanTween).GetMethod("pushNewTween", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static);
             pushNewTween.Invoke(this, new object[] { objectToTween, target, duration, tween });
+
+            if (fromCheck)
+            {
+                tween.from = from;
+            }
 
             tween.setTo(target)
               .setTime(duration)
@@ -174,20 +182,57 @@ namespace com.zebugames.meantween.ult
         }
 
 
+
         public virtual void Awake()
         {
-            pushNewTween = typeof(LeanTween).GetMethod("pushNewTween", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static);
+
+            propertyInfo = selectedComponent.GetType().GetProperty(selectedFieldName);
+            if (propertyInfo != null)
+            {
+                fromCheck = true;
+                if (propertyInfo.PropertyType == typeof(float))
+                {
+                    from = new Vector3((float)propertyInfo.GetValue(selectedComponent), 0, 0);
+                    target = new Vector3(value, 0, 0);
+                }
+                else if (propertyInfo.PropertyType == typeof(Vector3))
+                {
+                    from = (Vector3)propertyInfo.GetValue(selectedComponent);
+                }
+                else if (propertyInfo.PropertyType == typeof(Vector2))
+                {
+                    from = (Vector2)propertyInfo.GetValue(selectedComponent);
+                    target = new Vector3(vector2Value.x, vector2Value.y, 0);
+                }
+            }
+            else
+            {
+                fieldInfo = selectedComponent.GetType().GetField(selectedFieldName);
+                if (fieldInfo != null)
+                {
+                    fromCheck = true;
+                    if (fieldInfo.FieldType == typeof(float))
+                    {
+                        from = new Vector3((float)fieldInfo.GetValue(selectedComponent), 0, 0);
+                        target = new Vector3(value, 0, 0);
+                    }
+                    else if (fieldInfo.FieldType == typeof(Vector3))
+                    {
+                        from = (Vector3)fieldInfo.GetValue(selectedComponent);
+                    }
+                    else if (fieldInfo.FieldType == typeof(Vector2))
+                    {
+                        from = (Vector2)fieldInfo.GetValue(selectedComponent);
+                        target = new Vector3(vector2Value.x, vector2Value.y, 0);
+                    }
+                }
+            }
             onComplete.AddPersistentCall((Action)Complete);
             totalDuration = duration;
             if (loops > 0)
             {
                 totalDuration = duration * loops;
             }
-        }
-
-        public void AnimateOnce()
-        {
-            Animate(true);
         }
 
 
@@ -214,30 +259,30 @@ namespace com.zebugames.meantween.ult
                 {
                     if (fieldInfo.FieldType == typeof(float))
                     {
-                        fieldInfo.SetValue(component, vector.x);
+                        fieldInfo.SetValue(selectedComponent, vector.x);
                     }
                     else if (fieldInfo.FieldType == typeof(Vector3))
                     {
-                        fieldInfo.SetValue(component, vector);
+                        fieldInfo.SetValue(selectedComponent, vector);
                     }
                     else if (fieldInfo.FieldType == typeof(Vector2))
                     {
-                        fieldInfo.SetValue(component, new Vector2(vector.x, vector.y));
+                        fieldInfo.SetValue(selectedComponent, new Vector2(vector.x, vector.y));
                     }
                 }
                 else if (propertyInfo != null)
                 {
                     if (propertyInfo.PropertyType == typeof(float))
                     {
-                        propertyInfo.SetValue(component, vector.x);
+                        propertyInfo.SetValue(selectedComponent, vector.x);
                     }
                     else if (propertyInfo.PropertyType == typeof(Vector3))
                     {
-                        propertyInfo.SetValue(component, vector);
+                        propertyInfo.SetValue(selectedComponent, vector);
                     }
                     else if (propertyInfo.PropertyType == typeof(Vector2))
                     {
-                        propertyInfo.SetValue(component, new Vector2(vector.x, vector.y));
+                        propertyInfo.SetValue(selectedComponent, new Vector2(vector.x, vector.y));
                     }
                 }
             }
@@ -273,7 +318,7 @@ namespace com.zebugames.meantween.ult
             LeanTween.resume(tweenId);
         }
 
-        public void Complete()
+        protected virtual void Complete()
         {
             loopsPlayed++;
             if (loopType == LOOPTYPE.Restart)

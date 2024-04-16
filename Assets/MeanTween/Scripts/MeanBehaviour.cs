@@ -79,6 +79,12 @@ namespace com.zebugames.meantween.unity
         public Vector3 target;
 
         [SerializeField]
+        public Vector2 vector2Value;
+
+        [SerializeField]
+        public float value;
+
+        [SerializeField]
         public Color color;
 
         [SerializeField]
@@ -126,7 +132,7 @@ namespace com.zebugames.meantween.unity
 
         public int tweenId;
 
-        int loopsPlayed = 0;
+        public int loopsPlayed = 0;
 
         public bool showEvents = false;
 
@@ -134,16 +140,13 @@ namespace com.zebugames.meantween.unity
 
         public virtual void Animate(bool once = false)
         {
-
-            if (pushNewTween == null)
-            {
-                pushNewTween = typeof(LeanTween).GetMethod("pushNewTween", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static);
-            }
+            tween = LeanTween.options();
+            tweenId = tween.id;
+            pushNewTween = typeof(LeanTween).GetMethod("pushNewTween", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static);
             pushNewTween.Invoke(this, new object[] { objectToTween, target, duration, tween });
 
             if (fromCheck)
             {
-                //Get component by selectedcomponent, get field by selectedfield
                 tween.from = from;
             }
 
@@ -191,6 +194,7 @@ namespace com.zebugames.meantween.unity
                 if (propertyInfo.PropertyType == typeof(float))
                 {
                     from = new Vector3((float)propertyInfo.GetValue(selectedComponent), 0, 0);
+                    target = new Vector3(value, 0, 0);
                 }
                 else if (propertyInfo.PropertyType == typeof(Vector3))
                 {
@@ -199,6 +203,7 @@ namespace com.zebugames.meantween.unity
                 else if (propertyInfo.PropertyType == typeof(Vector2))
                 {
                     from = (Vector2)propertyInfo.GetValue(selectedComponent);
+                    target = new Vector3(vector2Value.x, vector2Value.y, 0);
                 }
             }
             else
@@ -210,6 +215,7 @@ namespace com.zebugames.meantween.unity
                     if (fieldInfo.FieldType == typeof(float))
                     {
                         from = new Vector3((float)fieldInfo.GetValue(selectedComponent), 0, 0);
+                        target = new Vector3(value, 0, 0);
                     }
                     else if (fieldInfo.FieldType == typeof(Vector3))
                     {
@@ -218,14 +224,12 @@ namespace com.zebugames.meantween.unity
                     else if (fieldInfo.FieldType == typeof(Vector2))
                     {
                         from = (Vector2)fieldInfo.GetValue(selectedComponent);
+                        target = new Vector3(vector2Value.x, vector2Value.y, 0);
                     }
                 }
             }
 
             //  Selected Component => Selected Field => get
-            tween = LeanTween.options();
-            tweenId = tween.id;
-            pushNewTween = typeof(LeanTween).GetMethod("pushNewTween", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static);
             onComplete.AddListener(Complete);
             totalDuration = duration;
             if (loops > 0)
@@ -234,11 +238,6 @@ namespace com.zebugames.meantween.unity
             }
         }
 
-
-        public void AnimateOnce()
-        {
-            Animate(true);
-        }
 
 
         public virtual void Start()
@@ -323,7 +322,7 @@ namespace com.zebugames.meantween.unity
             LeanTween.resume(tweenId);
         }
 
-        void Complete()
+        protected virtual void Complete()
         {
             loopsPlayed++;
             if (loopType == LOOPTYPE.Restart)
@@ -345,7 +344,6 @@ namespace com.zebugames.meantween.unity
             {
                 onLoopsComplete.Invoke();
             }
-
 
         }
     }

@@ -15,8 +15,6 @@ namespace com.zebugames.meantween.ult
         public override void Awake()
         {
             base.Awake();
-
-
         }
 
         public override void Animate(bool once = false)
@@ -183,5 +181,12 @@ namespace com.zebugames.meantween.ult
             }
 
         }
+        protected override void Complete()
+        {
+            base.Complete();
+
+
+        }
     }
+
 }

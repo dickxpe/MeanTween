@@ -88,7 +88,7 @@ namespace com.zebugames.meantween.unity
                         {
                             if (tween.infiniteLoop)
                             {
-                                tween.AnimateOnce();
+                                tween.Animate(true);
                             }
                             else
                             {
@@ -116,7 +116,7 @@ namespace com.zebugames.meantween.unity
             unityEvent.AddListener(action.Invoke);
             if (playNext.infiniteLoop)
             {
-                playNext.AnimateOnce();
+                playNext.Animate(true);
             }
             else
             {

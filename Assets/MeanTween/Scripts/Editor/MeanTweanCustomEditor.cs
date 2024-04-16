@@ -95,7 +95,7 @@ namespace com.zebugames.meantween.unity
                 }
 
                 meanTween.selectedComponentId = EditorGUILayout.Popup("Component", meanTween.selectedComponentId, componentStrings);
-
+                serializedObject.FindProperty("selectedComponentId").SetValue(meanTween.selectedComponentId);
                 const BindingFlags flags = BindingFlags.Public | BindingFlags.Instance;
                 Component component;
 
@@ -166,7 +166,7 @@ namespace com.zebugames.meantween.unity
                 if (publicFields.Count > 0)
                 {
                     meanTween.selectedFieldId = EditorGUILayout.Popup("Property", meanTween.selectedFieldId, publicFields.ToArray());
-
+                    serializedObject.FindProperty("selectedFieldId").SetValue(meanTween.selectedFieldId);
                     FieldInfo fieldInfoOut;
                     PropertyInfo propertyInfoOut;
                     SerializedProperty fromProp = serializedObject.FindProperty("from");
@@ -175,7 +175,6 @@ namespace com.zebugames.meantween.unity
                         serializedObject.FindProperty("fromCheck").SetValue(true);
                         serializedObject.FindProperty("selectedFieldName").SetValue(fieldInfoOut.Name);
 
-                        // meanTween.fieldInfo = fieldInfoOut;
                         if (fieldInfoOut.FieldType == typeof(float))
                         {
                             EditorGUILayout.PropertyField(serializedObject.FindProperty("value"));
@@ -196,8 +195,6 @@ namespace com.zebugames.meantween.unity
                     {
                         serializedObject.FindProperty("fromCheck").SetValue(true);
                         serializedObject.FindProperty("selectedFieldName").SetValue(propertyInfoOut.Name);
-                        // meanTween.propertyInfo = propertyInfoOut;
-
                         if (propertyInfoOut.PropertyType == typeof(float))
                         {
                             EditorGUILayout.PropertyField(serializedObject.FindProperty("value"));
@@ -302,13 +299,16 @@ namespace com.zebugames.meantween.unity
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("onStart"));
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("onUpdate"));
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("onComplete"));
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("onLoopsComplete"));
+                if (meanTween.loopType != MeanBehaviour.LOOPTYPE.Once && !meanTween.infiniteLoop)
+                {
+                    EditorGUILayout.PropertyField(serializedObject.FindProperty("onLoopsComplete"));
+                }
             }
 
             if (EditorGUI.EndChangeCheck())
             {
                 changeUpdate = true;
-                EditorUtility.SetDirty(target);
+                // EditorUtility.SetDirty(target);
             }
             else
             {

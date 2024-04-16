@@ -5,11 +5,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using TMPro;
 using UltEvents;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.Rendering;
 
 namespace com.zebugames.meantween.ult
 {
@@ -92,7 +89,7 @@ namespace com.zebugames.meantween.ult
                         {
                             if (tween.infiniteLoop)
                             {
-                                tween.AnimateOnce();
+                                tween.Animate(true);
                             }
                             else
                             {
@@ -104,11 +101,9 @@ namespace com.zebugames.meantween.ult
                 }
                 else
                 {
+                    foreach (MeanBehaviour tween in sequenceTween.tweens.ToList())
                     {
-                        foreach (MeanBehaviour tween in sequenceTween.tweens.ToList())
-                        {
-                            yield return WaitUntilEvent(tween, tween.onLoopsComplete);
-                        }
+                        yield return WaitUntilEvent(tween, tween.onLoopsComplete);
                     }
                 }
             }
@@ -124,7 +119,7 @@ namespace com.zebugames.meantween.ult
 
             if (playNext.infiniteLoop)
             {
-                playNext.AnimateOnce();
+                playNext.Animate(true);
             }
             else
             {
@@ -134,7 +129,6 @@ namespace com.zebugames.meantween.ult
             yield return new WaitUntil(() => trigger);
             unityEvent.RemovePersistentCall(action);
         }
-        public delegate void RefAction<T1>(ref T1 a);
 
         public void Trigger()
         {

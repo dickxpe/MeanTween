@@ -121,7 +121,7 @@ namespace com.zebugames.meantween.unity
             for (int i = 0; i < componentStrings.Length; i++)
             {
                 int charIndex = componentStrings[i].IndexOf('(');
-                componentStrings[i] = componentStrings[i].Substring(charIndex + 1, componentStrings[i].Length - charIndex - 2) + (i + 1) + ": " + components[i].tweenType.ToString();
+                componentStrings[i] = componentStrings[i].Substring(charIndex + 1, componentStrings[i].Length - charIndex - 1) + ": " + components[i].tweenType.ToString();
                 componentStrings[i] += " - " + components[i].loopType.ToString();
                 if (components[i].loopType != MeanBehaviour.LOOPTYPE.Once)
                 {

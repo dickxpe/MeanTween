@@ -7,9 +7,11 @@ using System.Linq;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using UltEvents.Editor;
 
 namespace com.zebugames.meantween.ult
 {
+
 
     [CanEditMultipleObjects]
     [CustomEditor(typeof(MeanTween))]
@@ -92,15 +94,16 @@ namespace com.zebugames.meantween.ult
                     componentsLookup.Add(componentStrings[i], components[i]);
                 }
 
-                meanTween.selectedComponent = EditorGUILayout.Popup("Component", meanTween.selectedComponent, componentStrings);
-
+                meanTween.selectedComponentId = EditorGUILayout.Popup("Component", meanTween.selectedComponentId, componentStrings);
+                serializedObject.FindProperty("selectedComponentId").SetValue(meanTween.selectedComponentId);
                 const BindingFlags flags = BindingFlags.Public | BindingFlags.Instance;
                 Component component;
 
                 List<string> publicFields = new List<string>();
-                if (componentsLookup.TryGetValue(componentStrings[meanTween.selectedComponent], out component))
+                if (componentsLookup.TryGetValue(componentStrings[meanTween.selectedComponentId], out component))
                 {
-                    meanTween.component = component;
+                    serializedObject.FindProperty("selectedComponent").SetValue(component);
+                    meanTween.selectedComponent = component;
                     FieldInfo[] fields = component.GetType().GetFields(flags);
                     foreach (FieldInfo fieldInfo in fields)
                     {
@@ -162,50 +165,57 @@ namespace com.zebugames.meantween.ult
 
                 if (publicFields.Count > 0)
                 {
-                    meanTween.selectedField = EditorGUILayout.Popup("Property", meanTween.selectedField, publicFields.ToArray());
-
+                    meanTween.selectedFieldId = EditorGUILayout.Popup("Property", meanTween.selectedFieldId, publicFields.ToArray());
+                    serializedObject.FindProperty("selectedFieldId").SetValue(meanTween.selectedFieldId);
                     FieldInfo fieldInfoOut;
                     PropertyInfo propertyInfoOut;
-
-                    if (fieldsLookup.TryGetValue(publicFields[meanTween.selectedField], out fieldInfoOut))
+                    SerializedProperty fromProp = serializedObject.FindProperty("from");
+                    if (fieldsLookup.TryGetValue(publicFields[meanTween.selectedFieldId], out fieldInfoOut))
                     {
-                        meanTween.fieldInfo = fieldInfoOut;
+                        serializedObject.FindProperty("fromCheck").SetValue(true);
+                        serializedObject.FindProperty("selectedFieldName").SetValue(fieldInfoOut.Name);
 
                         if (fieldInfoOut.FieldType == typeof(float))
                         {
                             EditorGUILayout.PropertyField(serializedObject.FindProperty("value"));
+                            fromProp.SetValue(new Vector3((float)fieldInfoOut.GetValue(meanTween.selectedComponent), 0, 0));
                         }
                         else if (fieldInfoOut.FieldType == typeof(Vector3))
                         {
                             EditorGUILayout.PropertyField(serializedObject.FindProperty("target"));
+                            fromProp.SetValue((Vector3)fieldInfoOut.GetValue(meanTween.selectedComponent));
                         }
                         else if (fieldInfoOut.FieldType == typeof(Vector2))
                         {
                             EditorGUILayout.PropertyField(serializedObject.FindProperty("vector2Value"));
+                            fromProp.SetValue((Vector2)fieldInfoOut.GetValue(meanTween.selectedComponent));
                         }
                     }
-                    else if (propertiesLookup.TryGetValue(publicFields[meanTween.selectedField], out propertyInfoOut))
+                    else if (propertiesLookup.TryGetValue(publicFields[meanTween.selectedFieldId], out propertyInfoOut))
                     {
-                        meanTween.propertyInfo = propertyInfoOut;
-
+                        serializedObject.FindProperty("fromCheck").SetValue(true);
+                        serializedObject.FindProperty("selectedFieldName").SetValue(propertyInfoOut.Name);
                         if (propertyInfoOut.PropertyType == typeof(float))
                         {
                             EditorGUILayout.PropertyField(serializedObject.FindProperty("value"));
+                            fromProp.SetValue(new Vector3((float)propertyInfoOut.GetValue(meanTween.selectedComponent), 0, 0));
                         }
                         else if (propertyInfoOut.PropertyType == typeof(Vector3))
                         {
                             EditorGUILayout.PropertyField(serializedObject.FindProperty("target"));
+                            fromProp.SetValue((Vector3)propertyInfoOut.GetValue(meanTween.selectedComponent));
                         }
                         else if (propertyInfoOut.PropertyType == typeof(Vector2))
                         {
                             EditorGUILayout.PropertyField(serializedObject.FindProperty("vector2Value"));
+                            fromProp.SetValue((Vector2)propertyInfoOut.GetValue(meanTween.selectedComponent));
                         }
                     }
                 }
                 else
                 {
                     GUI.enabled = false;
-                    meanTween.selectedField = EditorGUILayout.Popup("Property", 0, new string[] { "Component has no public fields or properties" });
+                    meanTween.selectedFieldId = EditorGUILayout.Popup("Property", 0, new string[] { "Component has no public fields or properties" });
                     GUI.enabled = true;
                 }
 
@@ -291,16 +301,20 @@ namespace com.zebugames.meantween.ult
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("onComplete"));
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("onLoopsComplete"));
             }
-            serializedObject.ApplyModifiedProperties();
 
             if (EditorGUI.EndChangeCheck())
             {
                 changeUpdate = true;
+                // EditorUtility.SetDirty(target);
             }
             else
             {
                 changeUpdate = false;
             }
+
+            serializedObject.ApplyModifiedProperties();
+
+
             if (EditorApplication.isPlaying)
             {
                 GUI.color = Color.cyan;
