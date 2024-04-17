@@ -3585,9 +3585,9 @@ public class LTSpline
         numSections = pts.Length - 3;
 
         float minSegment = float.PositiveInfinity;
-        Vector3 earlierPoint = this.pts[1];
+        Vector3 earlierPoint = this.pts[0];
         float totalDistance = 0f;
-        for (int i = 1; i < this.pts.Length - 1; i++)
+        for (int i = 1; i < this.pts.Length; i++)
         {
             // float pointDistance = (this.pts[i]-earlierPoint).sqrMagnitude;
             float pointDistance = Vector3.Distance(this.pts[i], earlierPoint);

@@ -4,23 +4,80 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using UnityEditor;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace com.zebugames.meantween.ult
 {
     public class MeanTween : MeanBehaviour
     {
 
+
+        public override void Start()
+        {
+            base.Start();
+        }
         public override void Awake()
         {
             base.Awake();
         }
 
+
         public override void Animate(bool once = false)
         {
 
             base.Animate(once);
+            List<Vector3> bezierPoints = new List<Vector3>();
+
+            if (path)
+            {
+
+                bezierPoints.Add(startPoint);
+                if (pathPoints.Count > 0)
+                {
+                    int i = 0;
+                    foreach (BezierPoint bp in pathPoints)
+                    {
+                        if (i == 0)
+                        {
+                            bezierPoints.Add(bp.control1);
+                            bezierPoints.Add(startControlPoint);
+                            bezierPoints.Add(bp.point);
+                        }
+                        else
+                        {
+                            bezierPoints.Add(pathPoints[i - 1].point);
+                            bezierPoints.Add(bp.control1);
+                            bezierPoints.Add(pathPoints[i - 1].control2);
+                            bezierPoints.Add(bp.point);
+                        }
+
+
+                        if (i != 0 && i == pathPoints.Count - 1)
+                        {
+                            bezierPoints.Add(pathPoints[i].point);
+                            bezierPoints.Add(endControlPoint);
+                            bezierPoints.Add(pathPoints[i].control2);
+                        }
+                        if (i == 0 && i == pathPoints.Count - 1)
+                        {
+                            bezierPoints.Add(bp.point);
+                            bezierPoints.Add(endControlPoint);
+                            bezierPoints.Add(bp.control2);
+                        }
+                        i++;
+                    }
+                }
+                else
+                {
+                    bezierPoints.Add(endControlPoint);
+                    bezierPoints.Add(startControlPoint);
+                }
+
+                bezierPoints.Add(endPoint);
+            }
+
 
             if (tweenType == TWEENTYPE.SpriteColor)
             {
@@ -35,7 +92,6 @@ namespace com.zebugames.meantween.ult
                     tween.spriteRen = ren;
                     tween.setColor().setPoint(new Vector3(color.r, color.g, color.b));
                 }
-
             }
             else if (tweenType == TWEENTYPE.SpriteAlpha)
             {
@@ -62,11 +118,24 @@ namespace com.zebugames.meantween.ult
                 {
                     if (tweenType == TWEENTYPE.Move)
                     {
-                        if (spline)
+                        if (path)
                         {
-                            splinePositions.Insert(0, objectToTween.transform.position);
-                            tween.optional.spline = new LTSpline(splinePositions.ToArray());
-                            tween.setMoveSpline();
+                            LTBezierPath path = new LTBezierPath(bezierPoints.ToArray());
+                            tween.setSpeed(speed);
+
+                            if (orientToPath)
+                            {
+                                path.orientToPath = true;
+                            }
+                            else
+                            {
+                                path.orientToPath = false;
+                            }
+
+                            tween.setTo(new Vector3(1.0f, 0.0f, 0.0f));
+                            tween.optional.path = path;
+                            tween.setMoveCurved();
+
                         }
                         else
                         {
@@ -123,11 +192,30 @@ namespace com.zebugames.meantween.ult
                 {
                     if (tweenType == TWEENTYPE.Move)
                     {
-                        if (spline)
+                        if (path)
                         {
-                            splinePositions.Insert(0, objectToTween.transform.localPosition);
-                            tween.optional.spline = new LTSpline(splinePositions.ToArray());
-                            tween.setMoveSplineLocal();
+                            tween.setSpeed(speed);
+                            LTBezierPath path = new LTBezierPath(bezierPoints.ToArray());
+
+                            if (orientToPath)
+                            {
+                                path.orientToPath = true;
+                            }
+                            else
+                            {
+                                path.orientToPath = false;
+                            }
+
+                            tween.setTo(new Vector3(1.0f, 0.0f, 0.0f));
+                            tween.optional.path = path;
+                            if (transform.parent != null)
+                            {
+                                tween.setMoveCurvedLocal();
+                            }
+                            else
+                            {
+                                tween.setMoveCurved();
+                            }
                         }
                         else
                         {
@@ -184,9 +272,88 @@ namespace com.zebugames.meantween.ult
         protected override void Complete()
         {
             base.Complete();
+        }
 
+        void OnDrawGizmosSelected()
+        {
+
+            if (path)
+            {
+                List<Vector3> bezierPoints = new List<Vector3>();
+
+                bezierPoints.Add(startPoint);
+
+                if (pathPoints.Count > 0)
+                {
+                    int i = 0;
+                    foreach (BezierPoint bp in pathPoints)
+                    {
+                        if (i == 0)
+                        {
+                            bezierPoints.Add(bp.control1);
+                            bezierPoints.Add(startControlPoint);
+                            bezierPoints.Add(bp.point);
+                        }
+                        else
+                        {
+                            bezierPoints.Add(pathPoints[i - 1].point);
+                            bezierPoints.Add(bp.control1);
+                            bezierPoints.Add(pathPoints[i - 1].control2);
+                            bezierPoints.Add(bp.point);
+                        }
+
+
+                        if (i != 0 && i == pathPoints.Count - 1)
+                        {
+                            bezierPoints.Add(pathPoints[i].point);
+                            bezierPoints.Add(endControlPoint);
+                            bezierPoints.Add(pathPoints[i].control2);
+                        }
+                        if (i == 0 && i == pathPoints.Count - 1)
+                        {
+                            bezierPoints.Add(bp.point);
+                            bezierPoints.Add(endControlPoint);
+                            bezierPoints.Add(bp.control2);
+                        }
+                        i++;
+                    }
+                }
+                else
+                {
+                    bezierPoints.Add(endControlPoint);
+                    bezierPoints.Add(startControlPoint);
+                }
+
+                bezierPoints.Add(endPoint);
+
+
+                var lookRotation = Quaternion.LookRotation(Camera.current.transform.forward);
+                LTBezierPath bezier = new LTBezierPath();
+                Gizmos.color = new Color(1, 0, 1, 0.5f);
+
+                List<Vector3> localPositions = new List<Vector3>();
+                foreach (Vector3 pos in bezierPoints)
+                {
+
+                    if (space == SPACE.Local && transform.parent != null)
+                    {
+                        Vector3 localPos = transform.parent.TransformPoint(pos);
+                        localPositions.Add(localPos);
+                    }
+                }
+                if (space == SPACE.Local && transform.parent != null)
+                {
+                    bezier.setPoints(localPositions.ToArray());
+                }
+                else
+                {
+                    bezier.setPoints(bezierPoints.ToArray());
+                }
+                bezier.gizmoDraw();
+            }
 
         }
     }
-
 }
+
+

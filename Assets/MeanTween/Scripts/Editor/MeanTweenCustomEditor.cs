@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using UltEvents.Editor;
+using Unity.Mathematics;
 
 namespace com.zebugames.meantween.unity
 {
@@ -25,9 +26,122 @@ namespace com.zebugames.meantween.unity
         Dictionary<string, PropertyInfo> propertiesLookup = new Dictionary<string, PropertyInfo>();
         bool changeUpdate = false;
 
+        void OnSceneGUI()
+        {
+            MeanTween meanTween = (MeanTween)target;
+
+            var lookRotation = Quaternion.LookRotation(Camera.current.transform.forward);
+            float radius = 0.25f;
+
+
+            if (meanTween.path)
+            {
+                Handles.color = new Color(0, 1, 0, 0.5f);
+                if (meanTween.space == MeanBehaviour.SPACE.Local && meanTween.transform.parent != null)
+                {
+                    Vector3 localPoint = meanTween.transform.parent.TransformPoint(meanTween.startPoint);
+                    Vector3 localControl1 = meanTween.transform.parent.TransformPoint(meanTween.startControlPoint);
+
+                    Handles.DrawSolidDisc(localPoint, Camera.current.transform.forward, radius);
+                    Handles.DrawSolidDisc(localControl1, Camera.current.transform.forward, radius);
+
+                    meanTween.startPoint = meanTween.transform.parent.InverseTransformPoint(Handles.PositionHandle(localPoint, quaternion.identity));
+                    meanTween.startControlPoint = meanTween.transform.parent.InverseTransformPoint(Handles.PositionHandle(localControl1, quaternion.identity));
+                }
+                else
+                {
+                    meanTween.startPoint = Handles.PositionHandle(meanTween.startPoint, quaternion.identity);
+                    meanTween.startControlPoint = Handles.PositionHandle(meanTween.startControlPoint, quaternion.identity);
+
+                    Handles.DrawSolidDisc(meanTween.startPoint, Camera.current.transform.forward, radius);
+                    Handles.DrawSolidDisc(meanTween.startControlPoint, Camera.current.transform.forward, radius);
+                }
+
+                Handles.color = new Color(1, 0, 1, 0.5f);
+                Vector3[] localPositions = new Vector3[meanTween.pathPoints.Count];
+
+                for (int i = 0; i < meanTween.pathPoints.Count; i++)
+                {
+                    if (meanTween.space == MeanTween.SPACE.Local && meanTween.transform.parent != null)
+                    {
+                        Vector3 localPoint = meanTween.transform.parent.TransformPoint(meanTween.pathPoints[i].point);
+                        Vector3 localControl1 = meanTween.transform.parent.TransformPoint(meanTween.pathPoints[i].control1);
+                        Vector3 localControl2 = meanTween.transform.parent.TransformPoint(meanTween.pathPoints[i].control2);
+
+                        Vector3 newPos = meanTween.transform.parent.InverseTransformPoint(Handles.PositionHandle(localPoint, quaternion.identity));
+                        Vector3 newPos2 = meanTween.transform.parent.InverseTransformPoint(Handles.PositionHandle(localControl1, quaternion.identity));
+                        Vector3 newPos3 = meanTween.transform.parent.InverseTransformPoint(Handles.PositionHandle(localControl2, quaternion.identity));
+
+                        MeanBehaviour.BezierPoint bezierPoint1 = meanTween.pathPoints[i];
+                        bezierPoint1.point = newPos;
+                        bezierPoint1.control1 = newPos2;
+                        bezierPoint1.control2 = newPos3;
+                        meanTween.pathPoints[i] = bezierPoint1;
+
+                        Handles.DrawLine(localPoint, localControl1);
+                        Handles.DrawLine(localPoint, localControl2);
+
+                        Handles.DrawSolidDisc(localPoint, Camera.current.transform.forward, radius);
+                        Handles.DrawSolidDisc(localControl1, Camera.current.transform.forward, radius);
+                        Handles.DrawSolidDisc(localControl2, Camera.current.transform.forward, radius);
+                    }
+                    else
+                    {
+                        Vector3 newPos = Handles.PositionHandle(meanTween.pathPoints[i].point, quaternion.identity);
+                        Vector3 newPos2 = Handles.PositionHandle(meanTween.pathPoints[i].control1, quaternion.identity);
+                        Vector3 newPos3 = Handles.PositionHandle(meanTween.pathPoints[i].control2, quaternion.identity);
+
+                        MeanBehaviour.BezierPoint bezierPoint1 = meanTween.pathPoints[i];
+                        bezierPoint1.point = newPos;
+                        bezierPoint1.control1 = newPos2;
+                        bezierPoint1.control2 = newPos3;
+                        meanTween.pathPoints[i] = bezierPoint1;
+
+                        Handles.DrawLine(meanTween.pathPoints[i].point, meanTween.pathPoints[i].control1);
+                        Handles.DrawLine(meanTween.pathPoints[i].point, meanTween.pathPoints[i].control2);
+
+                        Handles.DrawSolidDisc(meanTween.pathPoints[i].point, Camera.current.transform.forward, radius);
+                        Handles.DrawSolidDisc(meanTween.pathPoints[i].control1, Camera.current.transform.forward, radius);
+                        Handles.DrawSolidDisc(meanTween.pathPoints[i].control2, Camera.current.transform.forward, radius);
+                    }
+                }
+
+
+                if (meanTween.space == MeanBehaviour.SPACE.Local && meanTween.transform.parent != null)
+                {
+                    Vector3 localPointEnd = meanTween.transform.parent.TransformPoint(meanTween.endPoint);
+                    Vector3 localPointStart = meanTween.transform.parent.TransformPoint(meanTween.startPoint);
+                    Vector3 localControlEnd = meanTween.transform.parent.TransformPoint(meanTween.endControlPoint);
+                    Vector3 localControlStart = meanTween.transform.parent.TransformPoint(meanTween.startControlPoint);
+
+                    Handles.color = new Color(0, 1, 0, 0.5f);
+                    Handles.DrawLine(localControlStart, localPointStart);
+                    Handles.color = new Color(1, 0, 0, 0.5f);
+                    Handles.DrawLine(localControlEnd, localPointEnd);
+                    Handles.DrawSolidDisc(localPointEnd, Camera.current.transform.forward, radius);
+                    Handles.DrawSolidDisc(localControlEnd, Camera.current.transform.forward, radius);
+
+                    meanTween.endPoint = meanTween.transform.parent.InverseTransformPoint(Handles.PositionHandle(localPointEnd, quaternion.identity));
+                    meanTween.endControlPoint = meanTween.transform.parent.InverseTransformPoint(Handles.PositionHandle(localControlEnd, quaternion.identity));
+                }
+                else
+                {
+                    Handles.color = new Color(0, 1, 0, 0.5f);
+                    Handles.DrawLine(meanTween.startControlPoint, meanTween.startPoint);
+                    Handles.color = new Color(1, 0, 0, 0.5f);
+                    Handles.DrawLine(meanTween.endControlPoint, meanTween.endPoint);
+
+                    Handles.DrawSolidDisc(meanTween.endPoint, Camera.current.transform.forward, radius);
+                    Handles.DrawSolidDisc(meanTween.endControlPoint, Camera.current.transform.forward, radius);
+
+                    meanTween.endPoint = Handles.PositionHandle(meanTween.endPoint, quaternion.identity);
+                    meanTween.endControlPoint = Handles.PositionHandle(meanTween.endControlPoint, quaternion.identity);
+                }
+            }
+        }
+
         public override void OnInspectorGUI()
         {
-
             serializedObject.Update();
 
             componentsLookup.Clear();
@@ -246,15 +360,14 @@ namespace com.zebugames.meantween.unity
                 }
 
                 bool spline = false;
-                //TODO: Implement splines
-                /*
-                if (tweenType == MeanTween.TWEENTYPE.Move)
+
+                if (meanTween.tweenType == MeanBehaviour.TWEENTYPE.Move)
                 {
-                    SerializedProperty splineProp = serializedObject.FindProperty("spline");
+                    SerializedProperty splineProp = serializedObject.FindProperty("path");
                     spline = splineProp.GetValue<bool>();
                     EditorGUILayout.PropertyField(splineProp);
                 }
-                */
+
                 if (!spline)
                 {
                     if (!rotateAround)
@@ -271,11 +384,23 @@ namespace com.zebugames.meantween.unity
                 }
                 else
                 {
-                    EditorGUILayout.PropertyField(serializedObject.FindProperty("splinePositions"));
+                    EditorGUILayout.PropertyField(serializedObject.FindProperty("orientToPath"));
+                    EditorGUILayout.PropertyField(serializedObject.FindProperty("startPoint"));
+                    EditorGUILayout.PropertyField(serializedObject.FindProperty("startControlPoint"));
+                    EditorGUILayout.PropertyField(serializedObject.FindProperty("pathPoints"));
+                    EditorGUILayout.PropertyField(serializedObject.FindProperty("endPoint"));
+                    EditorGUILayout.PropertyField(serializedObject.FindProperty("endControlPoint"));
                 }
             }
 
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("duration"));
+            if (meanTween.path)
+            {
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("speed"));
+            }
+            else
+            {
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("duration"));
+            }
             EditorGUILayout.PropertyField(serializedObject.FindProperty("playOnAwake"));
             SerializedProperty loopProp = serializedObject.FindProperty("loopType");
             EditorGUILayout.PropertyField(loopProp);
@@ -308,7 +433,7 @@ namespace com.zebugames.meantween.unity
             if (EditorGUI.EndChangeCheck())
             {
                 changeUpdate = true;
-                // EditorUtility.SetDirty(target);
+                EditorUtility.SetDirty(target);
             }
             else
             {
@@ -328,6 +453,10 @@ namespace com.zebugames.meantween.unity
                 }
                 GUI.color = default;
             }
+
+
+
+
         }
     }
 }

@@ -2,17 +2,25 @@
 // MIT License - Copyright (c) 2024 Peter Dickx
 using UnityEngine;
 using System;
+using UnityEngine.Events;
 using System.Collections.Generic;
 using System.Reflection;
 using UltEvents;
-using UnityEngine.Rendering;
 
 namespace com.zebugames.meantween.ult
 {
     public abstract class MeanBehaviour : MonoBehaviour
     {
+        [Serializable]
+        public struct BezierPoint
+        {
+            public Vector3 point;
 
+            public Vector3 control1;
 
+            public Vector3 control2;
+
+        }
         public enum LOOPTYPE
         {
             Once,
@@ -59,7 +67,7 @@ namespace com.zebugames.meantween.ult
         public TWEENTYPE tweenType = TWEENTYPE.Move;
 
         [SerializeField]
-        public bool spline = false;
+        public bool path = false;
 
         [SerializeField]
         public bool rotateAroundAxis = false;
@@ -91,8 +99,24 @@ namespace com.zebugames.meantween.ult
         [SerializeField]
         public float alpha;
 
+
         [SerializeField]
-        public List<Vector3> splinePositions = new List<Vector3>();
+        public bool orientToPath;
+        [SerializeField]
+        public Vector3 startPoint;
+        [SerializeField]
+        public Vector3 startControlPoint;
+
+        [SerializeField]
+        public Vector3 endPoint;
+        [SerializeField]
+        public Vector3 endControlPoint;
+
+        [SerializeField]
+        public List<BezierPoint> pathPoints = new List<BezierPoint>();
+
+        [SerializeField]
+        public float speed = 2;
         [SerializeField]
         public float duration = 2;
 
@@ -159,6 +183,8 @@ namespace com.zebugames.meantween.ult
               .setOnCompleteOnRepeat(true)
               .setOnComplete(() => { onComplete.Invoke(); })
               .setIgnoreTimeScale(ignoreTimeScale);
+
+
 
             if (infiniteLoop)
             {
@@ -227,6 +253,7 @@ namespace com.zebugames.meantween.ult
                     }
                 }
             }
+
             onComplete.AddPersistentCall((Action)Complete);
             totalDuration = duration;
             if (loops > 0)
@@ -234,6 +261,7 @@ namespace com.zebugames.meantween.ult
                 totalDuration = duration * loops;
             }
         }
+
 
 
         public virtual void Start()
@@ -340,7 +368,6 @@ namespace com.zebugames.meantween.ult
             {
                 onLoopsComplete.Invoke();
             }
-
 
         }
     }

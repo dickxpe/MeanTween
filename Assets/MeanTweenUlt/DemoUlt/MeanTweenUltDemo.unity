@@ -252,7 +252,7 @@ MonoBehaviour:
   from: {x: 0, y: 0, z: 0}
   fromCheck: 0
   tweenType: 1
-  spline: 0
+  path: 0
   rotateAroundAxis: 1
   axis: 2
   degrees: 360
@@ -264,7 +264,13 @@ MonoBehaviour:
   value: 0
   color: {r: 0, g: 0, b: 0, a: 0}
   alpha: 0
-  splinePositions: []
+  orientToPath: 0
+  startPoint: {x: 0, y: 0, z: 0}
+  startControlPoint: {x: 0, y: 0, z: 0}
+  endPoint: {x: 0, y: 0, z: 0}
+  endControlPoint: {x: 0, y: 0, z: 0}
+  pathPoints: []
+  speed: 2
   duration: 2
   totalDuration: 2
   playOnAwake: 1
@@ -471,6 +477,38 @@ MonoBehaviour:
         _Z: 0
         _W: 0
         _Object: {fileID: 0}
+--- !u!1 &763269964
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 763269965}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &763269965
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 763269964}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.81, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1591037541}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &997577193
 GameObject:
   m_ObjectHideFlags: 0
@@ -600,7 +638,7 @@ MonoBehaviour:
   from: {x: 0, y: 0, z: 0}
   fromCheck: 1
   tweenType: 5
-  spline: 0
+  path: 0
   rotateAroundAxis: 0
   axis: 0
   degrees: 360
@@ -612,7 +650,13 @@ MonoBehaviour:
   value: 0
   color: {r: 0, g: 0, b: 0, a: 0}
   alpha: 0
-  splinePositions: []
+  orientToPath: 0
+  startPoint: {x: 0, y: 0, z: 0}
+  startControlPoint: {x: 0, y: 0, z: 0}
+  endPoint: {x: 0, y: 0, z: 0}
+  endControlPoint: {x: 0, y: 0, z: 0}
+  pathPoints: []
+  speed: 2
   duration: 2
   totalDuration: 2
   playOnAwake: 1
@@ -781,7 +825,7 @@ GameObject:
   - component: {fileID: 1591037539}
   - component: {fileID: 1591037538}
   - component: {fileID: 1591037543}
-  - component: {fileID: 1591037542}
+  - component: {fileID: 1591037544}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -868,65 +912,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1591037537}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.5, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -7.2, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 763269965}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1591037542
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1591037537}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5dcd484ea2ae62640a45a1ed4e516c85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tweenName: Tween 2
-  objectToTween: {fileID: 1591037537}
-  selectedComponentId: 0
-  selectedFieldId: 0
-  selectedComponent: {fileID: 0}
-  selectedFieldName: 
-  from: {x: 0, y: 0, z: 0}
-  fromCheck: 0
-  tweenType: 1
-  spline: 0
-  rotateAroundAxis: 1
-  axis: 0
-  degrees: 360
-  space: 0
-  easeType: 7
-  additive: 0
-  target: {x: 0, y: 0, z: 0}
-  vector2Value: {x: 0, y: 0}
-  value: 0
-  color: {r: 0, g: 0, b: 0, a: 0}
-  alpha: 0
-  splinePositions: []
-  duration: 2
-  totalDuration: 2
-  playOnAwake: 0
-  ignoreTimeScale: 0
-  onStart:
-    _PersistentCalls: []
-  onUpdate:
-    _PersistentCalls: []
-  infiniteLoop: 1
-  loops: 2
-  onComplete:
-    _PersistentCalls: []
-  onLoopsComplete:
-    _PersistentCalls: []
-  loopType: 0
-  tweenId: 0
-  loopsPlayed: 0
-  showEvents: 0
 --- !u!114 &1591037543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -948,7 +940,7 @@ MonoBehaviour:
   from: {x: 0, y: 0, z: 0}
   fromCheck: 0
   tweenType: 0
-  spline: 0
+  path: 0
   rotateAroundAxis: 0
   axis: 0
   degrees: 360
@@ -960,7 +952,16 @@ MonoBehaviour:
   value: 0
   color: {r: 0, g: 0, b: 0, a: 0}
   alpha: 0
-  splinePositions: []
+  orientToPath: 1
+  startPoint: {x: 0.46811867, y: -6.6939316, z: 0}
+  startControlPoint: {x: 1.3953562, y: 0, z: -5.9108562}
+  endPoint: {x: 16.132853, y: 0.5500002, z: 0}
+  endControlPoint: {x: 16.7576, y: -2.9586682, z: 0}
+  pathPoints:
+  - point: {x: 6.6652174, y: -1.327146, z: 0}
+    control1: {x: 8.5188055, y: -6.918089, z: 0}
+    control2: {x: 6.847959, y: 2.9163647, z: 0}
+  speed: 2
   duration: 2
   totalDuration: 2
   playOnAwake: 1
@@ -973,17 +974,75 @@ MonoBehaviour:
   loops: 2
   onComplete:
     _PersistentCalls:
-    - _Target: {fileID: 1591037542}
+    - _Target: {fileID: 1591037544}
       _MemberName: Animate
       _PersistentArguments:
       - _Type: 1
-        _Int: 1
+        _Int: 0
         _String: 
         _X: 0
         _Y: 0
         _Z: 0
         _W: 0
         _Object: {fileID: 0}
+  onLoopsComplete:
+    _PersistentCalls: []
+  loopType: 0
+  tweenId: 0
+  loopsPlayed: 0
+  showEvents: 1
+--- !u!114 &1591037544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1591037537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dcd484ea2ae62640a45a1ed4e516c85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tweenName: Tween 2
+  objectToTween: {fileID: 1591037537}
+  selectedComponentId: 0
+  selectedFieldId: 0
+  selectedComponent: {fileID: 0}
+  selectedFieldName: 
+  from: {x: 0, y: 0, z: 0}
+  fromCheck: 0
+  tweenType: 1
+  path: 0
+  rotateAroundAxis: 1
+  axis: 2
+  degrees: 360
+  space: 0
+  easeType: 7
+  additive: 0
+  target: {x: 0, y: 0, z: 0}
+  vector2Value: {x: 0, y: 0}
+  value: 0
+  color: {r: 0, g: 0, b: 0, a: 0}
+  alpha: 0
+  orientToPath: 0
+  startPoint: {x: 0, y: 0, z: 0}
+  startControlPoint: {x: 0, y: 0, z: 0}
+  endPoint: {x: 0, y: 0, z: 0}
+  endControlPoint: {x: 0, y: 0, z: 0}
+  pathPoints: []
+  speed: 2
+  duration: 2
+  totalDuration: 2
+  playOnAwake: 0
+  ignoreTimeScale: 0
+  onStart:
+    _PersistentCalls: []
+  onUpdate:
+    _PersistentCalls: []
+  infiniteLoop: 1
+  loops: 2
+  onComplete:
+    _PersistentCalls: []
   onLoopsComplete:
     _PersistentCalls: []
   loopType: 0
@@ -1097,7 +1156,7 @@ MonoBehaviour:
   from: {x: 0, y: 0, z: 0}
   fromCheck: 0
   tweenType: 1
-  spline: 0
+  path: 0
   rotateAroundAxis: 1
   axis: 2
   degrees: 360
@@ -1109,7 +1168,13 @@ MonoBehaviour:
   value: 0
   color: {r: 0, g: 0, b: 0, a: 0}
   alpha: 0
-  splinePositions: []
+  orientToPath: 0
+  startPoint: {x: 0, y: 0, z: 0}
+  startControlPoint: {x: 0, y: 0, z: 0}
+  endPoint: {x: 0, y: 0, z: 0}
+  endControlPoint: {x: 0, y: 0, z: 0}
+  pathPoints: []
+  speed: 2
   duration: 2
   totalDuration: 2
   playOnAwake: 1
@@ -1149,7 +1214,7 @@ MonoBehaviour:
   from: {x: 0, y: 0, z: 0}
   fromCheck: 0
   tweenType: 3
-  spline: 0
+  path: 0
   rotateAroundAxis: 0
   axis: 0
   degrees: 360
@@ -1161,7 +1226,13 @@ MonoBehaviour:
   value: 0
   color: {r: 0, g: 0, b: 0, a: 0}
   alpha: 0
-  splinePositions: []
+  orientToPath: 0
+  startPoint: {x: 0, y: 0, z: 0}
+  startControlPoint: {x: 0, y: 0, z: 0}
+  endPoint: {x: 0, y: 0, z: 0}
+  endControlPoint: {x: 0, y: 0, z: 0}
+  pathPoints: []
+  speed: 2
   duration: 2
   totalDuration: 2
   playOnAwake: 1
@@ -1287,7 +1358,7 @@ MonoBehaviour:
   from: {x: 0, y: 0, z: 0}
   fromCheck: 0
   tweenType: 1
-  spline: 0
+  path: 0
   rotateAroundAxis: 1
   axis: 2
   degrees: -360
@@ -1299,7 +1370,13 @@ MonoBehaviour:
   value: 0
   color: {r: 0, g: 0, b: 0, a: 0}
   alpha: 0
-  splinePositions: []
+  orientToPath: 0
+  startPoint: {x: 0, y: 0, z: 0}
+  startControlPoint: {x: 0, y: 0, z: 0}
+  endPoint: {x: 0, y: 0, z: 0}
+  endControlPoint: {x: 0, y: 0, z: 0}
+  pathPoints: []
+  speed: 2
   duration: 2
   totalDuration: 2
   playOnAwake: 1
@@ -1339,7 +1416,7 @@ MonoBehaviour:
   from: {x: 0, y: 0, z: 0}
   fromCheck: 0
   tweenType: 4
-  spline: 0
+  path: 0
   rotateAroundAxis: 0
   axis: 0
   degrees: 360
@@ -1351,7 +1428,13 @@ MonoBehaviour:
   value: 0
   color: {r: 1, g: 1, b: 0, a: 1}
   alpha: 0
-  splinePositions: []
+  orientToPath: 0
+  startPoint: {x: 0, y: 0, z: 0}
+  startControlPoint: {x: 0, y: 0, z: 0}
+  endPoint: {x: 0, y: 0, z: 0}
+  endControlPoint: {x: 0, y: 0, z: 0}
+  pathPoints: []
+  speed: 2
   duration: 2
   totalDuration: 2
   playOnAwake: 1
@@ -1497,7 +1580,7 @@ MonoBehaviour:
   from: {x: 0, y: 0, z: 0}
   fromCheck: 0
   tweenType: 2
-  spline: 0
+  path: 0
   rotateAroundAxis: 0
   axis: 0
   degrees: 360
@@ -1509,7 +1592,13 @@ MonoBehaviour:
   value: 0
   color: {r: 0, g: 0, b: 0, a: 0}
   alpha: 0
-  splinePositions: []
+  orientToPath: 0
+  startPoint: {x: 0, y: 0, z: 0}
+  startControlPoint: {x: 0, y: 0, z: 0}
+  endPoint: {x: 0, y: 0, z: 0}
+  endControlPoint: {x: 0, y: 0, z: 0}
+  pathPoints: []
+  speed: 2
   duration: 1
   totalDuration: 2
   playOnAwake: 1
@@ -1535,9 +1624,9 @@ SceneRoots:
   - {fileID: 1413131700}
   - {fileID: 505552798}
   - {fileID: 555861500}
-  - {fileID: 1591037541}
   - {fileID: 2086920871}
   - {fileID: 90245977}
   - {fileID: 997577197}
   - {fileID: 1830490044}
   - {fileID: 1863516125}
+  - {fileID: 763269965}
