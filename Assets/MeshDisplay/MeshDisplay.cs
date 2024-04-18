@@ -37,7 +37,6 @@ public class MeshDisplay : EditorWindow
 
 	[MenuItem("Window/Analysis/Mesh Display", false, 0)]
 
-
 	static void DisplayMesh(MenuCommand command)
 	{
 		EditorWindow.GetWindow(typeof(MeshDisplay));
@@ -62,7 +61,6 @@ public class MeshDisplay : EditorWindow
 
 	void OnGUI()
 	{
-
 		ScriptableObject target = this;
 		SerializedObject serializedObject = new SerializedObject(target);
 		serializedObject.Update();
@@ -83,7 +81,6 @@ public class MeshDisplay : EditorWindow
 		EditorGUILayout.PropertyField(serializedObject.FindProperty("meshes"));
 		serializedObject.ApplyModifiedProperties();
 		HandleUtility.Repaint();
-
 	}
 
 	void OnSceneGUI(SceneView sceneView)

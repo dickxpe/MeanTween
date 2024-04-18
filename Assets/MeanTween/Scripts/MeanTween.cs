@@ -12,8 +12,6 @@ namespace com.zebugames.meantween.unity
 {
     public class MeanTween : MeanBehaviour
     {
-
-
         public override void Start()
         {
             base.Start();
@@ -23,16 +21,13 @@ namespace com.zebugames.meantween.unity
             base.Awake();
         }
 
-
         public override void Animate(bool once = false)
         {
-
             base.Animate(once);
             List<Vector3> bezierPoints = new List<Vector3>();
 
             if (path)
             {
-
                 bezierPoints.Add(startPoint);
                 if (pathPoints.Count > 0)
                 {
@@ -52,7 +47,6 @@ namespace com.zebugames.meantween.unity
                             bezierPoints.Add(pathPoints[i - 1].control2);
                             bezierPoints.Add(bp.point);
                         }
-
 
                         if (i != 0 && i == pathPoints.Count - 1)
                         {
@@ -77,7 +71,6 @@ namespace com.zebugames.meantween.unity
 
                 bezierPoints.Add(endPoint);
             }
-
 
             if (tweenType == TWEENTYPE.SpriteColor)
             {
@@ -135,7 +128,6 @@ namespace com.zebugames.meantween.unity
                             tween.setTo(new Vector3(1.0f, 0.0f, 0.0f));
                             tween.optional.path = path;
                             tween.setMoveCurved();
-
                         }
                         else
                         {
@@ -145,7 +137,6 @@ namespace com.zebugames.meantween.unity
                             }
                             tween.setMove();
                         }
-
                     }
                     else if (tweenType == TWEENTYPE.Rotate)
                     {
@@ -175,7 +166,6 @@ namespace com.zebugames.meantween.unity
                             }
                             tween.setRotate();
                         }
-
                     }
                     else if (tweenType == TWEENTYPE.Scale)
                     {
@@ -184,9 +174,7 @@ namespace com.zebugames.meantween.unity
                             tween.to = objectToTween.transform.localScale + tween.to;
                         }
                         tween.setScale();
-
                     }
-
                 }
                 else if (space == SPACE.Local)
                 {
@@ -216,7 +204,6 @@ namespace com.zebugames.meantween.unity
                             {
                                 tween.setMoveCurved();
                             }
-
                         }
                         else
                         {
@@ -262,14 +249,11 @@ namespace com.zebugames.meantween.unity
                             tween.to = objectToTween.transform.localScale + tween.to;
                         }
                         tween.setScale();
-
                     }
-
                 }
-
             }
-
         }
+
         protected override void Complete()
         {
             base.Complete();
@@ -277,7 +261,6 @@ namespace com.zebugames.meantween.unity
 
         void OnDrawGizmosSelected()
         {
-
             if (path)
             {
                 List<Vector3> bezierPoints = new List<Vector3>();
@@ -303,7 +286,6 @@ namespace com.zebugames.meantween.unity
                             bezierPoints.Add(bp.point);
                         }
 
-
                         if (i != 0 && i == pathPoints.Count - 1)
                         {
                             bezierPoints.Add(pathPoints[i].point);
@@ -327,7 +309,6 @@ namespace com.zebugames.meantween.unity
 
                 bezierPoints.Add(endPoint);
 
-
                 var lookRotation = Quaternion.LookRotation(Camera.current.transform.forward);
                 LTBezierPath bezier = new LTBezierPath();
                 Gizmos.color = new Color(1, 0, 1, 0.5f);
@@ -335,7 +316,6 @@ namespace com.zebugames.meantween.unity
                 List<Vector3> localPositions = new List<Vector3>();
                 foreach (Vector3 pos in bezierPoints)
                 {
-
                     if (space == SPACE.Local && transform.parent != null)
                     {
                         Vector3 localPos = transform.parent.TransformPoint(pos);
@@ -352,9 +332,6 @@ namespace com.zebugames.meantween.unity
                 }
                 bezier.gizmoDraw();
             }
-
         }
     }
 }
-
-

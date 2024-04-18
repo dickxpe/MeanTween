@@ -48,7 +48,6 @@ namespace com.zebugames.meantween.unity
                 for (int j = 0; j < sequence[i].tweens.Count; j++)
                 {
                     tweens.Add(sequence[i].tweens[j]);
-
                 }
             }
         }
@@ -59,7 +58,6 @@ namespace com.zebugames.meantween.unity
             {
                 Play();
             }
-
         }
 
         public void Play()

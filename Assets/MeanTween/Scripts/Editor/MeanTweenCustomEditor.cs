@@ -33,36 +33,22 @@ namespace com.zebugames.meantween.unity
             var lookRotation = Quaternion.LookRotation(Camera.current.transform.forward);
             float radius = 0.25f;
 
-
             if (meanTween.path)
             {
                 Handles.color = new Color(0, 1, 0, 0.5f);
                 if (meanTween.space == MeanBehaviour.SPACE.Local && meanTween.transform.parent != null)
                 {
-                    Vector3 localPoint = meanTween.transform.parent.TransformPoint(meanTween.startPoint);
-                    Vector3 localControl1 = meanTween.transform.parent.TransformPoint(meanTween.startControlPoint);
+                    Vector3 localStartPoint = meanTween.transform.parent.TransformPoint(meanTween.startPoint);
+                    Vector3 localStartControl = meanTween.transform.parent.TransformPoint(meanTween.startControlPoint);
 
-                    Handles.DrawSolidDisc(localPoint, Camera.current.transform.forward, radius);
-                    Handles.DrawSolidDisc(localControl1, Camera.current.transform.forward, radius);
+                    Handles.DrawSolidDisc(localStartPoint, Camera.current.transform.forward, radius);
+                    Handles.DrawSolidDisc(localStartControl, Camera.current.transform.forward, radius);
 
-                    meanTween.startPoint = meanTween.transform.parent.InverseTransformPoint(Handles.PositionHandle(localPoint, quaternion.identity));
-                    meanTween.startControlPoint = meanTween.transform.parent.InverseTransformPoint(Handles.PositionHandle(localControl1, quaternion.identity));
-                }
-                else
-                {
-                    meanTween.startPoint = Handles.PositionHandle(meanTween.startPoint, quaternion.identity);
-                    meanTween.startControlPoint = Handles.PositionHandle(meanTween.startControlPoint, quaternion.identity);
+                    meanTween.startPoint = meanTween.transform.parent.InverseTransformPoint(Handles.PositionHandle(localStartPoint, quaternion.identity));
+                    meanTween.startControlPoint = meanTween.transform.parent.InverseTransformPoint(Handles.PositionHandle(localStartControl, quaternion.identity));
 
-                    Handles.DrawSolidDisc(meanTween.startPoint, Camera.current.transform.forward, radius);
-                    Handles.DrawSolidDisc(meanTween.startControlPoint, Camera.current.transform.forward, radius);
-                }
-
-                Handles.color = new Color(1, 0, 1, 0.5f);
-                Vector3[] localPositions = new Vector3[meanTween.pathPoints.Count];
-
-                for (int i = 0; i < meanTween.pathPoints.Count; i++)
-                {
-                    if (meanTween.space == MeanTween.SPACE.Local && meanTween.transform.parent != null)
+                    Handles.color = new Color(1, 0, 1, 0.5f);
+                    for (int i = 0; i < meanTween.pathPoints.Count; i++)
                     {
                         Vector3 localPoint = meanTween.transform.parent.TransformPoint(meanTween.pathPoints[i].point);
                         Vector3 localControl1 = meanTween.transform.parent.TransformPoint(meanTween.pathPoints[i].control1);
@@ -85,8 +71,32 @@ namespace com.zebugames.meantween.unity
                         Handles.DrawSolidDisc(localControl1, Camera.current.transform.forward, radius);
                         Handles.DrawSolidDisc(localControl2, Camera.current.transform.forward, radius);
                     }
-                    else
+                    Vector3 localEndPoint = meanTween.transform.parent.TransformPoint(meanTween.endPoint);
+                    Vector3 localEndControl = meanTween.transform.parent.TransformPoint(meanTween.endControlPoint);
+
+                    Handles.color = new Color(0, 1, 0, 0.5f);
+                    Handles.DrawLine(localStartControl, localStartPoint);
+                    Handles.color = new Color(1, 0, 0, 0.5f);
+                    Handles.DrawLine(localEndControl, localEndPoint);
+                    Handles.DrawSolidDisc(localEndPoint, Camera.current.transform.forward, radius);
+                    Handles.DrawSolidDisc(localEndControl, Camera.current.transform.forward, radius);
+
+                    meanTween.endPoint = meanTween.transform.parent.InverseTransformPoint(Handles.PositionHandle(localEndPoint, quaternion.identity));
+                    meanTween.endControlPoint = meanTween.transform.parent.InverseTransformPoint(Handles.PositionHandle(localEndControl, quaternion.identity));
+
+                }
+                else
+                {
+                    meanTween.startPoint = Handles.PositionHandle(meanTween.startPoint, quaternion.identity);
+                    meanTween.startControlPoint = Handles.PositionHandle(meanTween.startControlPoint, quaternion.identity);
+
+                    Handles.DrawSolidDisc(meanTween.startPoint, Camera.current.transform.forward, radius);
+                    Handles.DrawSolidDisc(meanTween.startControlPoint, Camera.current.transform.forward, radius);
+
+                    Handles.color = new Color(1, 0, 1, 0.5f);
+                    for (int i = 0; i < meanTween.pathPoints.Count; i++)
                     {
+
                         Vector3 newPos = Handles.PositionHandle(meanTween.pathPoints[i].point, quaternion.identity);
                         Vector3 newPos2 = Handles.PositionHandle(meanTween.pathPoints[i].control1, quaternion.identity);
                         Vector3 newPos3 = Handles.PositionHandle(meanTween.pathPoints[i].control2, quaternion.identity);
@@ -103,39 +113,18 @@ namespace com.zebugames.meantween.unity
                         Handles.DrawSolidDisc(meanTween.pathPoints[i].point, Camera.current.transform.forward, radius);
                         Handles.DrawSolidDisc(meanTween.pathPoints[i].control1, Camera.current.transform.forward, radius);
                         Handles.DrawSolidDisc(meanTween.pathPoints[i].control2, Camera.current.transform.forward, radius);
+
+                        Handles.color = new Color(0, 1, 0, 0.5f);
+                        Handles.DrawLine(meanTween.startControlPoint, meanTween.startPoint);
+                        Handles.color = new Color(1, 0, 0, 0.5f);
+                        Handles.DrawLine(meanTween.endControlPoint, meanTween.endPoint);
+
+                        Handles.DrawSolidDisc(meanTween.endPoint, Camera.current.transform.forward, radius);
+                        Handles.DrawSolidDisc(meanTween.endControlPoint, Camera.current.transform.forward, radius);
+
+                        meanTween.endPoint = Handles.PositionHandle(meanTween.endPoint, quaternion.identity);
+                        meanTween.endControlPoint = Handles.PositionHandle(meanTween.endControlPoint, quaternion.identity);
                     }
-                }
-
-
-                if (meanTween.space == MeanBehaviour.SPACE.Local && meanTween.transform.parent != null)
-                {
-                    Vector3 localPointEnd = meanTween.transform.parent.TransformPoint(meanTween.endPoint);
-                    Vector3 localPointStart = meanTween.transform.parent.TransformPoint(meanTween.startPoint);
-                    Vector3 localControlEnd = meanTween.transform.parent.TransformPoint(meanTween.endControlPoint);
-                    Vector3 localControlStart = meanTween.transform.parent.TransformPoint(meanTween.startControlPoint);
-
-                    Handles.color = new Color(0, 1, 0, 0.5f);
-                    Handles.DrawLine(localControlStart, localPointStart);
-                    Handles.color = new Color(1, 0, 0, 0.5f);
-                    Handles.DrawLine(localControlEnd, localPointEnd);
-                    Handles.DrawSolidDisc(localPointEnd, Camera.current.transform.forward, radius);
-                    Handles.DrawSolidDisc(localControlEnd, Camera.current.transform.forward, radius);
-
-                    meanTween.endPoint = meanTween.transform.parent.InverseTransformPoint(Handles.PositionHandle(localPointEnd, quaternion.identity));
-                    meanTween.endControlPoint = meanTween.transform.parent.InverseTransformPoint(Handles.PositionHandle(localControlEnd, quaternion.identity));
-                }
-                else
-                {
-                    Handles.color = new Color(0, 1, 0, 0.5f);
-                    Handles.DrawLine(meanTween.startControlPoint, meanTween.startPoint);
-                    Handles.color = new Color(1, 0, 0, 0.5f);
-                    Handles.DrawLine(meanTween.endControlPoint, meanTween.endPoint);
-
-                    Handles.DrawSolidDisc(meanTween.endPoint, Camera.current.transform.forward, radius);
-                    Handles.DrawSolidDisc(meanTween.endControlPoint, Camera.current.transform.forward, radius);
-
-                    meanTween.endPoint = Handles.PositionHandle(meanTween.endPoint, quaternion.identity);
-                    meanTween.endControlPoint = Handles.PositionHandle(meanTween.endControlPoint, quaternion.identity);
                 }
             }
         }
@@ -145,12 +134,14 @@ namespace com.zebugames.meantween.unity
             serializedObject.Update();
 
             componentsLookup.Clear();
+
             MeanTween meanTween = (MeanTween)target;
+
             Color defaultColor = GUI.color;
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("tweenName"));
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("objectToTween"));
 
             EditorGUI.BeginChangeCheck();
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("tweenName"));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("objectToTween"));
             SerializedProperty tweenTypeProp = serializedObject.FindProperty("tweenType");
             GUI.color = Color.cyan;
             EditorGUILayout.PropertyField(tweenTypeProp);
@@ -202,8 +193,6 @@ namespace com.zebugames.meantween.unity
                     if (duplicates.Contains(componentStrings[i]))
                     {
                         componentStrings[i] = componentStrings[i] + " " + count;
-
-
                     }
                     componentsLookup.Add(componentStrings[i], components[i]);
                 }
@@ -265,7 +254,6 @@ namespace com.zebugames.meantween.unity
                                 propertiesLookup.Add(publicFields[publicFields.Count - 1], propInfo);
                             }
                         }
-
                         else if (propInfo.PropertyType == typeof(Vector2))
                         {
                             publicFields.Add(propInfo.Name + " (Vector2)");
@@ -332,7 +320,6 @@ namespace com.zebugames.meantween.unity
                     meanTween.selectedFieldId = EditorGUILayout.Popup("Property", 0, new string[] { "Component has no public fields or properties" });
                     GUI.enabled = true;
                 }
-
             }
             else
             {
@@ -401,9 +388,11 @@ namespace com.zebugames.meantween.unity
             {
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("duration"));
             }
+
             EditorGUILayout.PropertyField(serializedObject.FindProperty("playOnAwake"));
             SerializedProperty loopProp = serializedObject.FindProperty("loopType");
             EditorGUILayout.PropertyField(loopProp);
+
             if (meanTween.loopType != MeanTween.LOOPTYPE.Once)
             {
                 SerializedProperty infiniteProp = serializedObject.FindProperty("infiniteLoop");
@@ -442,7 +431,6 @@ namespace com.zebugames.meantween.unity
 
             serializedObject.ApplyModifiedProperties();
 
-
             if (EditorApplication.isPlaying)
             {
                 GUI.color = Color.cyan;
@@ -453,10 +441,6 @@ namespace com.zebugames.meantween.unity
                 }
                 GUI.color = default;
             }
-
-
-
-
         }
     }
 }

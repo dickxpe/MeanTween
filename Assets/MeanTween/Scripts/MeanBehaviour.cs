@@ -98,7 +98,6 @@ namespace com.zebugames.meantween.unity
         [SerializeField]
         public float alpha;
 
-
         [SerializeField]
         public bool orientToPath;
         [SerializeField]
@@ -124,8 +123,6 @@ namespace com.zebugames.meantween.unity
         [SerializeField]
         public bool playOnAwake = false;
 
-
-
         [SerializeField]
         public bool ignoreTimeScale;
         [SerializeField]
@@ -136,8 +133,6 @@ namespace com.zebugames.meantween.unity
         protected MethodInfo pushNewTween;
 
         protected LTDescr tween;
-
-
 
         const BindingFlags flags = BindingFlags.Public | BindingFlags.Instance;
 
@@ -183,8 +178,6 @@ namespace com.zebugames.meantween.unity
               .setOnComplete(() => { onComplete.Invoke(); })
               .setIgnoreTimeScale(ignoreTimeScale);
 
-
-
             if (infiniteLoop)
             {
                 loops = -1;
@@ -206,12 +199,10 @@ namespace com.zebugames.meantween.unity
             }
         }
 
-
-
         public virtual void Awake()
         {
-
             propertyInfo = selectedComponent.GetType().GetProperty(selectedFieldName);
+
             if (propertyInfo != null)
             {
                 fromCheck = true;
@@ -233,6 +224,7 @@ namespace com.zebugames.meantween.unity
             else
             {
                 fieldInfo = selectedComponent.GetType().GetField(selectedFieldName);
+
                 if (fieldInfo != null)
                 {
                     fromCheck = true;
@@ -261,8 +253,6 @@ namespace com.zebugames.meantween.unity
             }
         }
 
-
-
         public virtual void Start()
         {
             if (playOnAwake)
@@ -279,7 +269,6 @@ namespace com.zebugames.meantween.unity
 
         protected void UpdateVector(Vector3 vector)
         {
-
             if (tweenType == TWEENTYPE.ComponentFieldValue)
             {
                 if (fieldInfo != null)
@@ -354,7 +343,6 @@ namespace com.zebugames.meantween.unity
                 {
                     onLoopsComplete.Invoke();
                 }
-
             }
             else if (loopType == LOOPTYPE.PingPong)
             {
@@ -367,7 +355,6 @@ namespace com.zebugames.meantween.unity
             {
                 onLoopsComplete.Invoke();
             }
-
         }
     }
 }

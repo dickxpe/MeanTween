@@ -15,17 +15,11 @@ namespace com.zebugames.meantween.unity
     [CustomEditor(typeof(MeanSequence))]
     public class MeanSequenceCustomEditor : Editor
     {
-
         SerializedProperty sequence;
-
         ReorderableList sequenceList;
-
         Dictionary<SequenceTween, CustomMeanTweenList> tweenLists = new Dictionary<SequenceTween, CustomMeanTweenList>();
-
         CustomMeanTweenList tweenlist;
-        List<float> heights = new List<float>();
         SequenceTween sequenceTween;
-
         MeanSequence meanSequence;
         Color defaultColor;
 
@@ -40,10 +34,8 @@ namespace com.zebugames.meantween.unity
             sequenceList.onAddCallback = AddCallBack;
         }
 
-
         void DrawSequenceListItems(Rect rect, int index, bool isActive, bool isFocused)
         {
-
             sequenceTween = meanSequence.sequence[index];
             SerializedProperty element = sequenceList.serializedProperty.GetArrayElementAtIndex(index);
             SerializedProperty tweens = element.FindPropertyRelative("tweens");
@@ -70,18 +62,14 @@ namespace com.zebugames.meantween.unity
                 Repaint();
             }
 
-
-
             if (sequenceTween.targetGameObject != null)
             {
-
                 if (sequenceTween.targetGameObject.GetComponents<MeanBehaviour>().Count() > 0)
                 {
                     SerializedProperty simulProp = element.FindPropertyRelative("playSimultaneously");
                     simulProp.boolValue = EditorGUI.ToggleLeft(new Rect(rect.x + 0, rect.y + 10 + EditorGUIUtility.singleLineHeight, 150, EditorGUIUtility.singleLineHeight), "Play Simulataneously", simulProp.boolValue);
                     if (!tweenLists.ContainsKey(meanSequence.sequence[index]))
                     {
-
                         tweenlist = new CustomMeanTweenList(serializedObject, tweens, true, true, true, true);
                         tweenlist.elementHeight = EditorGUIUtility.singleLineHeight;
                         tweenlist.drawElementCallback = DrawTweenListItems;
@@ -105,7 +93,6 @@ namespace com.zebugames.meantween.unity
                     EditorGUI.LabelField(new Rect(rect.x + 170, rect.y, rect.width, rect.height), "Selected gameObject has no MeanTweens");
                     GUI.color = defaultColor;
                 }
-
             }
             else
             {
@@ -226,7 +213,6 @@ namespace com.zebugames.meantween.unity
                         else
                         {
                             height = 4.5f * EditorGUIUtility.singleLineHeight + (count - 2) * (EditorGUIUtility.singleLineHeight + 2);
-
                         }
                     }
                 }
@@ -267,8 +253,6 @@ namespace com.zebugames.meantween.unity
                 }
                 GUI.color = defaultColor;
             }
-
-
 
             serializedObject.ApplyModifiedProperties();
         }

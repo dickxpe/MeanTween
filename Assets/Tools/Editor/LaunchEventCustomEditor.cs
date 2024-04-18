@@ -16,13 +16,11 @@ namespace com.zebugames.meantween.unity
     [InitializeOnLoad]
     public class LaunchEventCustomEditor : Editor
     {
-
         public override void OnInspectorGUI()
         {
             DrawDefaultInspector();
             LaunchEvent launchEvent = (LaunchEvent)target;
             if (EditorApplication.isPlaying)
-
             {
                 GUI.color = Color.cyan;
                 if (GUILayout.Button("LAUNCH", EditorStyles.miniButton))

@@ -60,10 +60,5 @@ namespace com.zebugames.meantween
             methodInfo.Invoke(this, parameters);
             GUILayout.EndVertical();
         }
-
     }
-
-
-
-
 }

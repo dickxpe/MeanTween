@@ -20,7 +20,4 @@ namespace com.zebugames.meantween.unity
             //TODO: Implement UI Tweens
         }
     }
-
 }
-
-

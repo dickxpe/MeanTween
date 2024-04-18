@@ -6,7 +6,6 @@ using UnityEngine.Events;
 
 namespace com.zebugames.meantween.unity
 {
-
     public class LaunchEvent : MonoBehaviour
     {
         [SerializeField]
@@ -16,5 +15,4 @@ namespace com.zebugames.meantween.unity
             launch.Invoke();
         }
     }
-
 }
