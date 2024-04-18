@@ -477,38 +477,6 @@ MonoBehaviour:
         _Z: 0
         _W: 0
         _Object: {fileID: 0}
---- !u!1 &763269964
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 763269965}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &763269965
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 763269964}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.81, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1591037541}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &997577193
 GameObject:
   m_ObjectHideFlags: 0
@@ -913,11 +881,11 @@ Transform:
   m_GameObject: {fileID: 1591037537}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.2, y: 0, z: 0}
+  m_LocalPosition: {x: -8.01, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 763269965}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1591037543
 MonoBehaviour:
@@ -1607,12 +1575,34 @@ MonoBehaviour:
     _PersistentCalls: []
   onUpdate:
     _PersistentCalls: []
-  infiniteLoop: 1
+  infiniteLoop: 0
   loops: 2
   onComplete:
-    _PersistentCalls: []
+    _PersistentCalls:
+    - _Target: {fileID: 555861499}
+      _MemberName: Log
+      _PersistentArguments:
+      - _Type: 2
+        _Int: 0
+        _String: Sphere Loop complete
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
   onLoopsComplete:
-    _PersistentCalls: []
+    _PersistentCalls:
+    - _Target: {fileID: 555861499}
+      _MemberName: Log
+      _PersistentArguments:
+      - _Type: 2
+        _Int: 0
+        _String: All Sphere loops completed
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
   loopType: 1
   tweenId: 0
   loopsPlayed: 0
@@ -1624,9 +1614,9 @@ SceneRoots:
   - {fileID: 1413131700}
   - {fileID: 505552798}
   - {fileID: 555861500}
+  - {fileID: 1591037541}
   - {fileID: 2086920871}
   - {fileID: 90245977}
   - {fileID: 997577197}
   - {fileID: 1830490044}
   - {fileID: 1863516125}
-  - {fileID: 763269965}
