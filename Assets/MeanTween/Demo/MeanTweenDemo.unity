@@ -486,7 +486,7 @@ MonoBehaviour:
       _MemberName: Animate
       _PersistentArguments:
       - _Type: 1
-        _Int: 1
+        _Int: 0
         _String: 
         _X: 0
         _Y: 0
@@ -934,7 +934,7 @@ MonoBehaviour:
   degrees: 360
   space: 0
   easeType: 7
-  additive: 0
+  additive: 1
   target: {x: 0, y: 2, z: 0}
   vector2Value: {x: 0, y: 0}
   value: 0
@@ -977,7 +977,7 @@ MonoBehaviour:
   onLoopsComplete:
     m_PersistentCalls:
       m_Calls: []
-  loopType: 1
+  loopType: 0
   tweenId: 0
   loopsPlayed: 0
   showEvents: 0

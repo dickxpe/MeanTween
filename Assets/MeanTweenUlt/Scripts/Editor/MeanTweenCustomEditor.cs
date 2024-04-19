@@ -353,22 +353,8 @@ namespace com.zebugames.meantween.ult
                 {
                     SerializedProperty additivieProp = serializedObject.FindProperty("additive");
 
-
                     EditorGUILayout.PropertyField(serializedObject.FindProperty("space"));
                     EditorGUILayout.PropertyField(additivieProp);
-                    if (!rotateAround)
-                    {
-                        if (meanTween.additive)
-                        {
-                            EditorGUILayout.PropertyField(serializedObject.FindProperty("target"), new GUIContent("Addition"));
-                        }
-                        else
-                        {
-                            EditorGUILayout.PropertyField(serializedObject.FindProperty("target"));
-                        }
-                    }
-
-
 
                     if (meanTween.tweenType == MeanTween.TWEENTYPE.Rotate)
                     {
@@ -380,11 +366,20 @@ namespace com.zebugames.meantween.ult
                             EditorGUILayout.PropertyField(serializedObject.FindProperty("axis"));
                             EditorGUILayout.PropertyField(serializedObject.FindProperty("degrees"));
                         }
-
                     }
 
+                    if (!rotateAround)
+                    {
+                        if (meanTween.additive)
+                        {
+                            EditorGUILayout.PropertyField(serializedObject.FindProperty("target"), new GUIContent("Addition"));
+                        }
+                        else
+                        {
+                            EditorGUILayout.PropertyField(serializedObject.FindProperty("target"));
+                        }
+                    }
                 }
-
 
                 if (spline)
                 {

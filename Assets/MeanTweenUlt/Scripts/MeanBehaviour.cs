@@ -163,7 +163,7 @@ namespace com.zebugames.meantween.ult
 
         string[] componentStrings;
 
-        public virtual void Animate(bool once = false)
+        public virtual void Animate(bool ignoreLoops = false)
         {
             tween = LeanTween.options();
             tweenId = tween.id;
@@ -191,7 +191,7 @@ namespace com.zebugames.meantween.ult
                 loops = -1;
             }
 
-            if (loopType == LOOPTYPE.Once || once)
+            if (loopType == LOOPTYPE.Once || ignoreLoops)
             {
                 tween.setLoopOnce();
             }

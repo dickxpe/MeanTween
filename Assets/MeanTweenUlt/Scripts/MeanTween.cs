@@ -24,10 +24,10 @@ namespace com.zebugames.meantween.ult
         }
 
 
-        public override void Animate(bool once = false)
+        public override void Animate(bool ignoreLoops = false)
         {
 
-            base.Animate(once);
+            base.Animate(ignoreLoops);
             List<Vector3> bezierPoints = new List<Vector3>();
 
             if (path)
