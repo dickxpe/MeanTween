@@ -316,32 +316,32 @@ namespace com.zebugames.meantween.ult
             }
         }
 
-        public void CancelAll()
+        public virtual void CancelAll()
         {
             LeanTween.cancel(gameObject);
         }
 
-        public void PauseAll()
+        public virtual void PauseAll()
         {
             LeanTween.pause(gameObject);
         }
 
-        public void ResumeAll()
+        public virtual void ResumeAll()
         {
             LeanTween.resume(gameObject);
         }
 
-        public void Cancel()
+        public virtual void Cancel()
         {
             LeanTween.cancel(tweenId);
         }
 
-        public void Pause()
+        public virtual void Pause()
         {
             LeanTween.pause(tweenId);
         }
 
-        public void Resume()
+        public virtual void Resume()
         {
             LeanTween.resume(tweenId);
         }

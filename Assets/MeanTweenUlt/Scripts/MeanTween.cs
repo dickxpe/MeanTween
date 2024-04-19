@@ -274,6 +274,36 @@ namespace com.zebugames.meantween.ult
             base.Complete();
         }
 
+        public override void CancelAll()
+        {
+            base.CancelAll();
+        }
+
+        public override void PauseAll()
+        {
+            base.PauseAll();
+        }
+
+        public override void ResumeAll()
+        {
+            base.ResumeAll();
+        }
+
+        public override void Cancel()
+        {
+            base.Cancel();
+        }
+
+        public override void Pause()
+        {
+            base.Pause();
+        }
+
+        public override void Resume()
+        {
+            base.Resume();
+        }
+
         void OnDrawGizmosSelected()
         {
 
