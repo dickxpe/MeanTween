@@ -142,6 +142,8 @@ namespace com.zebugames.meantween.unity
             EditorGUI.BeginChangeCheck();
             EditorGUILayout.PropertyField(serializedObject.FindProperty("tweenName"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("objectToTween"));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("playOnAwake"));
+
             SerializedProperty tweenTypeProp = serializedObject.FindProperty("tweenType");
             GUI.color = Color.cyan;
             EditorGUILayout.PropertyField(tweenTypeProp);
@@ -323,40 +325,37 @@ namespace com.zebugames.meantween.unity
             }
             else
             {
-                bool rotateAround = false;
-                SerializedProperty additivieProp = serializedObject.FindProperty("additive");
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("space"));
-                if (meanTween.tweenType == MeanTween.TWEENTYPE.Rotate)
+                SerializedProperty loopProp = serializedObject.FindProperty("loopType");
+                EditorGUILayout.PropertyField(loopProp);
+                if (meanTween.loopType != MeanTween.LOOPTYPE.Once)
                 {
-                    SerializedProperty rotateAroundProp = serializedObject.FindProperty("rotateAroundAxis");
-                    rotateAround = meanTween.rotateAroundAxis;
-                    EditorGUILayout.PropertyField(rotateAroundProp);
-                    if (rotateAround)
+                    SerializedProperty infiniteProp = serializedObject.FindProperty("infiniteLoop");
+                    EditorGUILayout.PropertyField(infiniteProp);
+
+                    if (!meanTween.infiniteLoop)
                     {
-                        EditorGUILayout.PropertyField(serializedObject.FindProperty("axis"));
-                        EditorGUILayout.PropertyField(serializedObject.FindProperty("degrees"));
+                        EditorGUILayout.PropertyField(serializedObject.FindProperty("loops"));
                     }
-                    else
-                    {
-                        EditorGUILayout.PropertyField(additivieProp);
-                    }
-                }
-                else
-                {
-                    EditorGUILayout.PropertyField(additivieProp);
                 }
 
                 bool spline = false;
-
+                SerializedProperty splineProp = null;
                 if (meanTween.tweenType == MeanBehaviour.TWEENTYPE.Move)
                 {
-                    SerializedProperty splineProp = serializedObject.FindProperty("path");
+                    splineProp = serializedObject.FindProperty("path");
                     spline = splineProp.GetValue<bool>();
+
                     EditorGUILayout.PropertyField(splineProp);
                 }
 
+                bool rotateAround = false;
                 if (!spline)
                 {
+                    SerializedProperty additivieProp = serializedObject.FindProperty("additive");
+
+
+                    EditorGUILayout.PropertyField(serializedObject.FindProperty("space"));
+                    EditorGUILayout.PropertyField(additivieProp);
                     if (!rotateAround)
                     {
                         if (meanTween.additive)
@@ -368,9 +367,29 @@ namespace com.zebugames.meantween.unity
                             EditorGUILayout.PropertyField(serializedObject.FindProperty("target"));
                         }
                     }
+
+
+
+                    if (meanTween.tweenType == MeanTween.TWEENTYPE.Rotate)
+                    {
+                        SerializedProperty rotateAroundProp = serializedObject.FindProperty("rotateAroundAxis");
+                        rotateAround = meanTween.rotateAroundAxis;
+                        EditorGUILayout.PropertyField(rotateAroundProp);
+                        if (rotateAround)
+                        {
+                            EditorGUILayout.PropertyField(serializedObject.FindProperty("axis"));
+                            EditorGUILayout.PropertyField(serializedObject.FindProperty("degrees"));
+                        }
+
+                    }
+
                 }
-                else
+
+
+                if (spline)
                 {
+                    EditorGUILayout.LabelField("Path Settings", EditorStyles.boldLabel);
+
                     EditorGUILayout.PropertyField(serializedObject.FindProperty("orientToPath"));
                     EditorGUILayout.PropertyField(serializedObject.FindProperty("startPoint"));
                     EditorGUILayout.PropertyField(serializedObject.FindProperty("startControlPoint"));
@@ -388,22 +407,6 @@ namespace com.zebugames.meantween.unity
             {
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("duration"));
             }
-
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("playOnAwake"));
-            SerializedProperty loopProp = serializedObject.FindProperty("loopType");
-            EditorGUILayout.PropertyField(loopProp);
-
-            if (meanTween.loopType != MeanTween.LOOPTYPE.Once)
-            {
-                SerializedProperty infiniteProp = serializedObject.FindProperty("infiniteLoop");
-                EditorGUILayout.PropertyField(infiniteProp);
-
-                if (!meanTween.infiniteLoop)
-                {
-                    EditorGUILayout.PropertyField(serializedObject.FindProperty("loops"));
-                }
-            }
-
             EditorGUILayout.PropertyField(serializedObject.FindProperty("ignoreTimeScale"));
 
             meanTween.showEvents = EditorGUILayout.Foldout(meanTween.showEvents, "Events");
