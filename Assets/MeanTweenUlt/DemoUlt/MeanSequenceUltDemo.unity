@@ -252,7 +252,7 @@ MonoBehaviour:
   from: {x: 0, y: 0, z: 0}
   fromCheck: 0
   tweenType: 1
-  spline: 0
+  path: 0
   rotateAroundAxis: 1
   axis: 2
   degrees: 360
@@ -264,7 +264,13 @@ MonoBehaviour:
   value: 0
   color: {r: 0, g: 0, b: 0, a: 0}
   alpha: 0
-  splinePositions: []
+  orientToPath: 0
+  startPoint: {x: 0, y: 0, z: 0}
+  startControlPoint: {x: 0, y: 0, z: 0}
+  endPoint: {x: 0, y: 0, z: 0}
+  endControlPoint: {x: 0, y: 0, z: 0}
+  pathPoints: []
+  speed: 2
   duration: 2
   totalDuration: 2
   playOnAwake: 0
@@ -600,7 +606,7 @@ MonoBehaviour:
   from: {x: 0, y: 0, z: 0}
   fromCheck: 1
   tweenType: 5
-  spline: 0
+  path: 0
   rotateAroundAxis: 0
   axis: 0
   degrees: 360
@@ -612,7 +618,13 @@ MonoBehaviour:
   value: 0
   color: {r: 0, g: 0, b: 0, a: 0}
   alpha: 0
-  splinePositions: []
+  orientToPath: 0
+  startPoint: {x: 0, y: 0, z: 0}
+  startControlPoint: {x: 0, y: 0, z: 0}
+  endPoint: {x: 0, y: 0, z: 0}
+  endControlPoint: {x: 0, y: 0, z: 0}
+  pathPoints: []
+  speed: 2
   duration: 2
   totalDuration: 2
   playOnAwake: 0
@@ -691,13 +703,13 @@ MonoBehaviour:
     - {fileID: 1863516129}
   onPlayNext:
     _PersistentCalls:
-    - _Target: {fileID: 555861499}
-      _MemberName: Log
+    - _Target: {fileID: 1591037542}
+      _MemberName: Animate
       _PersistentArguments:
-      - _Type: 14
-        _Int: 0
+      - _Type: 1
+        _Int: 1
         _String: 
-        _X: 2
+        _X: 0
         _Y: 0
         _Z: 0
         _W: 0
@@ -996,7 +1008,7 @@ MonoBehaviour:
   from: {x: 0, y: 0, z: 0}
   fromCheck: 0
   tweenType: 1
-  spline: 0
+  path: 0
   rotateAroundAxis: 1
   axis: 0
   degrees: 360
@@ -1008,7 +1020,13 @@ MonoBehaviour:
   value: 0
   color: {r: 0, g: 0, b: 0, a: 0}
   alpha: 0
-  splinePositions: []
+  orientToPath: 0
+  startPoint: {x: 0, y: 0, z: 0}
+  startControlPoint: {x: 0, y: 0, z: 0}
+  endPoint: {x: 0, y: 0, z: 0}
+  endControlPoint: {x: 0, y: 0, z: 0}
+  pathPoints: []
+  speed: 2
   duration: 2
   totalDuration: 2
   playOnAwake: 0
@@ -1048,7 +1066,7 @@ MonoBehaviour:
   from: {x: 0, y: 0, z: 0}
   fromCheck: 0
   tweenType: 0
-  spline: 0
+  path: 0
   rotateAroundAxis: 0
   axis: 0
   degrees: 360
@@ -1060,7 +1078,13 @@ MonoBehaviour:
   value: 0
   color: {r: 0, g: 0, b: 0, a: 0}
   alpha: 0
-  splinePositions: []
+  orientToPath: 0
+  startPoint: {x: 0, y: 0, z: 0}
+  startControlPoint: {x: 0, y: 0, z: 0}
+  endPoint: {x: 0, y: 0, z: 0}
+  endControlPoint: {x: 0, y: 0, z: 0}
+  pathPoints: []
+  speed: 2
   duration: 2
   totalDuration: 2
   playOnAwake: 0
@@ -1186,7 +1210,7 @@ MonoBehaviour:
   from: {x: 0, y: 0, z: 0}
   fromCheck: 0
   tweenType: 1
-  spline: 0
+  path: 0
   rotateAroundAxis: 1
   axis: 2
   degrees: 360
@@ -1198,7 +1222,13 @@ MonoBehaviour:
   value: 0
   color: {r: 0, g: 0, b: 0, a: 0}
   alpha: 0
-  splinePositions: []
+  orientToPath: 0
+  startPoint: {x: 0, y: 0, z: 0}
+  startControlPoint: {x: 0, y: 0, z: 0}
+  endPoint: {x: 0, y: 0, z: 0}
+  endControlPoint: {x: 0, y: 0, z: 0}
+  pathPoints: []
+  speed: 2
   duration: 2
   totalDuration: 2
   playOnAwake: 0
@@ -1238,7 +1268,7 @@ MonoBehaviour:
   from: {x: 0, y: 0, z: 0}
   fromCheck: 0
   tweenType: 3
-  spline: 0
+  path: 0
   rotateAroundAxis: 0
   axis: 0
   degrees: 360
@@ -1250,7 +1280,13 @@ MonoBehaviour:
   value: 0
   color: {r: 0, g: 0, b: 0, a: 0}
   alpha: 0
-  splinePositions: []
+  orientToPath: 0
+  startPoint: {x: 0, y: 0, z: 0}
+  startControlPoint: {x: 0, y: 0, z: 0}
+  endPoint: {x: 0, y: 0, z: 0}
+  endControlPoint: {x: 0, y: 0, z: 0}
+  pathPoints: []
+  speed: 2
   duration: 2
   totalDuration: 2
   playOnAwake: 0
@@ -1376,7 +1412,7 @@ MonoBehaviour:
   from: {x: 0, y: 0, z: 0}
   fromCheck: 0
   tweenType: 1
-  spline: 0
+  path: 0
   rotateAroundAxis: 1
   axis: 2
   degrees: -360
@@ -1388,7 +1424,13 @@ MonoBehaviour:
   value: 0
   color: {r: 0, g: 0, b: 0, a: 0}
   alpha: 0
-  splinePositions: []
+  orientToPath: 0
+  startPoint: {x: 0, y: 0, z: 0}
+  startControlPoint: {x: 0, y: 0, z: 0}
+  endPoint: {x: 0, y: 0, z: 0}
+  endControlPoint: {x: 0, y: 0, z: 0}
+  pathPoints: []
+  speed: 2
   duration: 2
   totalDuration: 2
   playOnAwake: 0
@@ -1428,7 +1470,7 @@ MonoBehaviour:
   from: {x: 0, y: 0, z: 0}
   fromCheck: 0
   tweenType: 4
-  spline: 0
+  path: 0
   rotateAroundAxis: 0
   axis: 0
   degrees: 360
@@ -1440,7 +1482,13 @@ MonoBehaviour:
   value: 0
   color: {r: 1, g: 1, b: 0, a: 1}
   alpha: 0
-  splinePositions: []
+  orientToPath: 0
+  startPoint: {x: 0, y: 0, z: 0}
+  startControlPoint: {x: 0, y: 0, z: 0}
+  endPoint: {x: 0, y: 0, z: 0}
+  endControlPoint: {x: 0, y: 0, z: 0}
+  pathPoints: []
+  speed: 2
   duration: 2
   totalDuration: 2
   playOnAwake: 0
@@ -1586,7 +1634,7 @@ MonoBehaviour:
   from: {x: 0, y: 0, z: 0}
   fromCheck: 0
   tweenType: 2
-  spline: 0
+  path: 0
   rotateAroundAxis: 0
   axis: 0
   degrees: 360
@@ -1598,7 +1646,13 @@ MonoBehaviour:
   value: 0
   color: {r: 0, g: 0, b: 0, a: 0}
   alpha: 0
-  splinePositions: []
+  orientToPath: 0
+  startPoint: {x: 0, y: 0, z: 0}
+  startControlPoint: {x: 0, y: 0, z: 0}
+  endPoint: {x: 0, y: 0, z: 0}
+  endControlPoint: {x: 0, y: 0, z: 0}
+  pathPoints: []
+  speed: 2
   duration: 1
   totalDuration: 2
   playOnAwake: 0

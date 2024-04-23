@@ -1003,7 +1003,7 @@ MonoBehaviour:
   fromCheck: 0
   tweenType: 1
   path: 0
-  rotateAroundAxis: 1
+  rotateAroundAxis: 0
   axis: 2
   degrees: 360
   space: 0

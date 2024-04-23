@@ -75,7 +75,8 @@ namespace EventVisualizer.Base
 			{
 				SerializedProperty persistentCalls;
 				bool isUltEvent = false;
-				if (iterator.type.Equals("UltEvent"))
+
+				if (iterator.type.Contains("Event"))
 				{
 					if ((int)iterator.FindPropertyRelative("_PersistentCalls.Array.size").boxedValue > 0)
 					{
@@ -98,7 +99,7 @@ namespace EventVisualizer.Base
 				{
 					if (isUltEvent)
 					{
-						UltEvent ultEvent = Puppy.EditorHelper.GetTargetObjectOfProperty(iterator) as UltEvent;
+						UltEventBase ultEvent = Puppy.EditorHelper.GetTargetObjectOfProperty(iterator) as UltEventBase;
 						if (ultEvent != null)
 						{
 							AddEventCalls(calls, caller, ultEvent, iterator.displayName, iterator.propertyPath);
@@ -151,7 +152,7 @@ namespace EventVisualizer.Base
 			}
 		}
 
-		private static void AddEventCalls(HashSet<EventCall> calls, Component caller, UltEvent unityEvent, string eventShortName, string eventFullName)
+		private static void AddEventCalls(HashSet<EventCall> calls, Component caller, UltEventBase unityEvent, string eventShortName, string eventFullName)
 		{
 			for (int i = 0; i < unityEvent.PersistentCallsList.Count(); i++)
 			{

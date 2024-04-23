@@ -24,7 +24,7 @@ namespace EventVisualizer.Base
         public int timesExecuted { get; private set; }
         public readonly Color color;
         public readonly UnityEventBase unityEvent;
-        public readonly UltEvent ultEvent;
+        public readonly UltEventBase ultEvent;
 
         public string MethodFullPath
         {
@@ -52,7 +52,7 @@ namespace EventVisualizer.Base
             AttachTrigger(unityEvent);
         }
 
-        public EventCall(Object sender, Object receiver, string eventShortName, string eventFullName, string methodName, UltEvent ultEvent)
+        public EventCall(Object sender, Object receiver, string eventShortName, string eventFullName, string methodName, UltEventBase ultEvent)
         {
             this.sender = sender as Component ? (sender as Component).gameObject : sender;
             this.receiver = receiver as Component ? (receiver as Component).gameObject : receiver;
@@ -66,7 +66,7 @@ namespace EventVisualizer.Base
             AttachTrigger(ultEvent);
         }
 
-        private void AttachTrigger(UltEvent unityEvent)
+        private void AttachTrigger(UltEventBase unityEvent)
         {
             if (unityEvent == null)
             {
