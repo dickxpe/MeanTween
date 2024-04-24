@@ -1093,8 +1093,8 @@ MonoBehaviour:
     _PersistentCalls: []
   onUpdate:
     _PersistentCalls:
-    - _Target: {fileID: 0}
-      _MemberName: Console, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null.Log
+    - _Target: {fileID: 555861499}
+      _MemberName: Log
       _PersistentArguments:
       - _Type: 14
         _Int: 0
