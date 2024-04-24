@@ -333,12 +333,29 @@ namespace EventVisualizer.Base
         public override bool Equals(object obj)
         {
             var ec = (EventCall)obj;
-            return null != ec && ec.unityEvent == unityEvent && sender == ec.sender && receiver == ec.receiver && method == ec.method;
+            if (ec.unityEvent == null)
+            {
+                return null != ec && ec.ultEvent == ultEvent && sender == ec.sender && receiver == ec.receiver && method == ec.method;
+            }
+
+            else
+            {
+                return null != ec && ec.unityEvent == unityEvent && sender == ec.sender && receiver == ec.receiver && method == ec.method;
+            }
         }
+
 
         public override int GetHashCode()
         {
-            return unityEvent == null ? 0 : unityEvent.GetHashCode() ^ (receiver == null ? 0 : receiver.GetHashCode() ^ method.GetHashCode());
+            if (unityEvent == null)
+            {
+                return ultEvent == null ? 0 : ultEvent.GetHashCode() ^ (receiver == null ? 0 : receiver.GetHashCode() ^ method.GetHashCode());
+            }
+            else
+            {
+                return unityEvent == null ? 0 : unityEvent.GetHashCode() ^ (receiver == null ? 0 : receiver.GetHashCode() ^ method.GetHashCode());
+            }
+
         }
     }
 }

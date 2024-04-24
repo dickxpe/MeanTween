@@ -25,12 +25,12 @@ public class Console : MonoBehaviour
         Debug.Log(component.ToString());
     }
 
-    public static void Log(GameObject gameObject)
+    public void Log(GameObject gameObject)
     {
         Debug.Log(gameObject.ToString());
     }
 
-    public static void Log(Vector3 vector3)
+    public void Log(Vector3 vector3)
     {
         Debug.Log(vector3.ToString());
     }

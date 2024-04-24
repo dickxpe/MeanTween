@@ -12,6 +12,7 @@ namespace com.zebugames.meantween.unity
 {
     public class MeanTween : MeanBehaviour
     {
+
         public override void Start()
         {
             base.Start();

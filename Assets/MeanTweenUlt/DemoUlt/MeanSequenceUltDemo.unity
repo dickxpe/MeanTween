@@ -1044,7 +1044,7 @@ MonoBehaviour:
   loopType: 0
   tweenId: 0
   loopsPlayed: 0
-  showEvents: 0
+  showEvents: 1
 --- !u!114 &1591037543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1092,7 +1092,18 @@ MonoBehaviour:
   onStart:
     _PersistentCalls: []
   onUpdate:
-    _PersistentCalls: []
+    _PersistentCalls:
+    - _Target: {fileID: 0}
+      _MemberName: Console, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null.Log
+      _PersistentArguments:
+      - _Type: 14
+        _Int: 0
+        _String: 
+        _X: 7
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
   infiniteLoop: 1
   loops: 2
   onComplete:
