@@ -95,7 +95,7 @@ namespace com.zebugames.meantween.ult
 
         [SerializeField]
         public Color color;
-
+        [Range(0, 255)]
         [SerializeField]
         public float alpha;
 
@@ -115,8 +115,11 @@ namespace com.zebugames.meantween.ult
         [SerializeField]
         public List<BezierPoint> pathPoints = new List<BezierPoint>();
 
+        [Min(0)]
         [SerializeField]
         public float speed = 2;
+
+        [Min(0)]
         [SerializeField]
         public float duration = 2;
 
@@ -160,8 +163,6 @@ namespace com.zebugames.meantween.ult
         public int loopsPlayed = 0;
 
         public bool showEvents = false;
-
-        string[] componentStrings;
 
         public virtual void Animate(bool ignoreLoops = false)
         {

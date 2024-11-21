@@ -114,17 +114,18 @@ namespace com.zebugames.meantween.unity
                         Handles.DrawSolidDisc(meanTween.pathPoints[i].control1, Camera.current.transform.forward, radius);
                         Handles.DrawSolidDisc(meanTween.pathPoints[i].control2, Camera.current.transform.forward, radius);
 
-                        Handles.color = new Color(0, 1, 0, 0.5f);
-                        Handles.DrawLine(meanTween.startControlPoint, meanTween.startPoint);
-                        Handles.color = new Color(1, 0, 0, 0.5f);
-                        Handles.DrawLine(meanTween.endControlPoint, meanTween.endPoint);
 
-                        Handles.DrawSolidDisc(meanTween.endPoint, Camera.current.transform.forward, radius);
-                        Handles.DrawSolidDisc(meanTween.endControlPoint, Camera.current.transform.forward, radius);
-
-                        meanTween.endPoint = Handles.PositionHandle(meanTween.endPoint, quaternion.identity);
-                        meanTween.endControlPoint = Handles.PositionHandle(meanTween.endControlPoint, quaternion.identity);
                     }
+                    Handles.color = new Color(0, 1, 0, 0.5f);
+                    Handles.DrawLine(meanTween.startControlPoint, meanTween.startPoint);
+                    Handles.color = new Color(1, 0, 0, 0.5f);
+                    Handles.DrawLine(meanTween.endControlPoint, meanTween.endPoint);
+
+                    Handles.DrawSolidDisc(meanTween.endPoint, Camera.current.transform.forward, radius);
+                    Handles.DrawSolidDisc(meanTween.endControlPoint, Camera.current.transform.forward, radius);
+
+                    meanTween.endPoint = Handles.PositionHandle(meanTween.endPoint, quaternion.identity);
+                    meanTween.endControlPoint = Handles.PositionHandle(meanTween.endControlPoint, quaternion.identity);
                 }
             }
         }
@@ -380,14 +381,30 @@ namespace com.zebugames.meantween.unity
                         }
                     }
                 }
-
-
-                if (spline)
+                else
                 {
+                    EditorGUILayout.PropertyField(serializedObject.FindProperty("space"));
+
                     EditorGUILayout.LabelField("Path Settings", EditorStyles.boldLabel);
 
                     EditorGUILayout.PropertyField(serializedObject.FindProperty("orientToPath"));
+                    if (GUILayout.Button("Set to transform position", EditorStyles.miniButton))
+                    {
+                        if (meanTween.space == MeanBehaviour.SPACE.Local)
+                        {
+                            meanTween.startPoint = meanTween.transform.localPosition;
+                            meanTween.startControlPoint = meanTween.transform.localPosition;
+                        }
+                        else
+                        {
+                            meanTween.startPoint = meanTween.transform.position;
+                            meanTween.startControlPoint = meanTween.transform.position;
+                        }
+
+                    }
                     EditorGUILayout.PropertyField(serializedObject.FindProperty("startPoint"));
+
+
                     EditorGUILayout.PropertyField(serializedObject.FindProperty("startControlPoint"));
                     EditorGUILayout.PropertyField(serializedObject.FindProperty("pathPoints"));
                     EditorGUILayout.PropertyField(serializedObject.FindProperty("endPoint"));
